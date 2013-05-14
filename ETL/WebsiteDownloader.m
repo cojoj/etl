@@ -10,4 +10,12 @@
 
 @implementation WebsiteDownloader
 
++ (NSString *)downloadContentOfURL:(NSURL *)url
+{
+    NSString *contentOfWebsite = [NSString stringWithContentsOfURL:url
+                                                          encoding:NSUTF8StringEncoding
+                                                             error:nil];
+    return contentOfWebsite;
+}
+
 @end

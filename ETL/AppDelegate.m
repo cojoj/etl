@@ -17,7 +17,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    WebsiteDownloader *website = [[WebsiteDownloader alloc] init];
+    NSURL *website = [[NSURL alloc] initWithString:@"http://www.findata.co.nz/markets/NYSE/symbols/A.htm"];
+    NSLog(@"%@", [WebsiteDownloader downloadContentOfURL:website]);
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "mckomo.ETL" in the user's Application Support directory.
