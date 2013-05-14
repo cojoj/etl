@@ -10,6 +10,8 @@
 
 @interface WebsiteDownloader : NSObject
 
-- (WebsiteDownloader *) WebsiteDownloader;
+@property (assign, nonatomic)NSString *url;
+
++ (NSString *)downloadContentOfURL:(NSURL *)url;
 
 @end
