@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "WebsiteDownloader.h"
 
 @implementation AppDelegate
 
@@ -16,7 +17,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    // Insert code here to initialize your application
+    WebsiteDownloader *website = [[WebsiteDownloader alloc] init];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "mckomo.ETL" in the user's Application Support directory.

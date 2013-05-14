@@ -14,6 +14,7 @@
 		BF13AF0617420C1C00E41981 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13AF0517420C1C00E41981 /* AppDelegate.m */; };
 		BF13AF0917420C1D00E41981 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF13AF0717420C1D00E41981 /* MainMenu.xib */; };
 		BF13AF0C17420C1D00E41981 /* ETL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BF13AF0A17420C1D00E41981 /* ETL.xcdatamodeld */; };
+		BF13AF1417420E7500E41981 /* WebsiteDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13AF1317420E7500E41981 /* WebsiteDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		BF13AF0517420C1C00E41981 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BF13AF0817420C1D00E41981 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BF13AF0B17420C1D00E41981 /* ETL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ETL.xcdatamodel; sourceTree = "<group>"; };
+		BF13AF1217420E7500E41981 /* WebsiteDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteDownloader.h; sourceTree = "<group>"; };
+		BF13AF1317420E7500E41981 /* WebsiteDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 			children = (
 				BF13AF0417420C1C00E41981 /* AppDelegate.h */,
 				BF13AF0517420C1C00E41981 /* AppDelegate.m */,
+				BF13AF1217420E7500E41981 /* WebsiteDownloader.h */,
+				BF13AF1317420E7500E41981 /* WebsiteDownloader.m */,
 				BF13AF0717420C1D00E41981 /* MainMenu.xib */,
 				BF13AF0A17420C1D00E41981 /* ETL.xcdatamodeld */,
 				BF13AEF917420C1C00E41981 /* Supporting Files */,
@@ -172,6 +177,7 @@
 				BF13AEFF17420C1C00E41981 /* main.m in Sources */,
 				BF13AF0617420C1C00E41981 /* AppDelegate.m in Sources */,
 				BF13AF0C17420C1D00E41981 /* ETL.xcdatamodeld in Sources */,
+				BF13AF1417420E7500E41981 /* WebsiteDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
