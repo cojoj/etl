@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		617687C5174416C200266CDF /* WebsiteParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 617687C4174416C200266CDF /* WebsiteParser.m */; };
 		BF13AEF317420C1C00E41981 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF13AEF217420C1C00E41981 /* Cocoa.framework */; };
 		BF13AEFD17420C1C00E41981 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF13AEFB17420C1C00E41981 /* InfoPlist.strings */; };
 		BF13AEFF17420C1C00E41981 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13AEFE17420C1C00E41981 /* main.m */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		617687C3174416C200266CDF /* WebsiteParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebsiteParser.h; sourceTree = "<group>"; };
+		617687C4174416C200266CDF /* WebsiteParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebsiteParser.m; sourceTree = "<group>"; };
 		BF13AEEF17420C1C00E41981 /* ETL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ETL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF13AEF217420C1C00E41981 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BF13AEF517420C1C00E41981 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -91,6 +94,8 @@
 				BF13AF0517420C1C00E41981 /* AppDelegate.m */,
 				BF13AF1217420E7500E41981 /* WebsiteDownloader.h */,
 				BF13AF1317420E7500E41981 /* WebsiteDownloader.m */,
+				617687C3174416C200266CDF /* WebsiteParser.h */,
+				617687C4174416C200266CDF /* WebsiteParser.m */,
 				BF13AF0717420C1D00E41981 /* MainMenu.xib */,
 				BF13AF0A17420C1D00E41981 /* ETL.xcdatamodeld */,
 				BF13AEF917420C1C00E41981 /* Supporting Files */,
@@ -178,6 +183,7 @@
 				BF13AF0617420C1C00E41981 /* AppDelegate.m in Sources */,
 				BF13AF0C17420C1D00E41981 /* ETL.xcdatamodeld in Sources */,
 				BF13AF1417420E7500E41981 /* WebsiteDownloader.m in Sources */,
+				617687C5174416C200266CDF /* WebsiteParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +319,7 @@
 				BF13AF1117420C1D00E41981 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
