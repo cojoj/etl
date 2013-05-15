@@ -10,6 +10,8 @@
 
 @interface WebsiteDownloader : NSObject
 
-+ (NSString *)downloadContentOfURL:(NSURL *)url;
+- (id)initWithURL:(NSURL *)url;
+- (NSData *)downloadContentOfWebsite;
+- (NSString *)showContentOfWebsite;
 
 @end

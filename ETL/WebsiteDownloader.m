@@ -8,12 +8,33 @@
 
 #import "WebsiteDownloader.h"
 
+@interface WebsiteDownloader ()
+
+@property (strong, nonatomic) NSURL *websiteURL;
+@property (strong, nonatomic) NSData *websiteSource;
+
+@end
+
 @implementation WebsiteDownloader
 
-+ (NSData *)downloadContentOfURL:(NSURL *)url
+- (id)initWithURL:(NSURL *)url
 {
-    NSData *contentOfWebsite = [NSData dataWithContentsOfURL:url];
-    return contentOfWebsite;
+    if (self = [super init]) {
+        [self setWebsiteURL:url];
+    }
+    return self;
+}
+
+- (NSData *)downloadContentOfWebsite
+{
+    self.websiteSource = [NSData dataWithContentsOfURL:self.websiteURL];
+    return self.websiteSource;
+}
+
+- (NSString *)showContentOfWebsite
+{
+    NSString *web = [[NSString alloc] initWithData:self.websiteSource encoding:NSUTF8StringEncoding];
+    return web;
 }
 
 @end
