@@ -31,22 +31,36 @@
         {
             [self setWebsiteEncoding:encoding];
         }
-        
-        
+
+        [self setWebsiteSource:[self downloadContentOfWebsite]];
     }
     return self;
 }
 
 - (NSData *)downloadContentOfWebsite
 {
-    self.websiteSource = [NSData dataWithContentsOfURL:self.websiteURL];
-    return self.websiteSource;
+    NSData *tmpWebsite = [NSData dataWithContentsOfURL:self.websiteURL];
+    
+    if (!tmpWebsite)
+    {
+        //NSLog(@"Ni chuja, nie ma takieiej strony!");
+        NSAlert *downloadAlert = [NSAlert alertWithMessageText:@"Ni chuja, nie ma takieiej strony!"
+                                                 defaultButton:@"OK"
+                                               alternateButton:nil
+                                                   otherButton:nil
+                                     informativeTextWithFormat:@""];
+        [downloadAlert runModal];
+        return nil;
+    } else
+    {
+        return tmpWebsite;
+    }
 }
 
-- (NSString *)showContentOfWebsite
+- (NSString *)getContentOfWebsite
 {
-        NSString *web = [[NSString alloc] initWithData:self.websiteSource encoding:NSUTF8StringEncoding];
-        return web;
+    NSString *web = [[NSString alloc] initWithData:self.websiteSource encoding:NSUTF8StringEncoding];
+    return web;
 }
 
 @end

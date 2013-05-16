@@ -11,6 +11,6 @@
 @interface WebsiteDownloader : NSObject
 
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding;
-- (NSString *)showContentOfWebsite;
+- (NSString *)getContentOfWebsite;
 
 @end

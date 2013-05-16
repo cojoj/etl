@@ -17,8 +17,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSURL *website = [[NSURL alloc] initWithString:@"http://www.findata.co.nz/markets/NYSE/symbols/A.htm"];
-    WebsiteDownloader *websiteDownloader = [[WebsiteDownloader alloc] initWithURL:website];
+    NSURL *website = [[NSURL alloc] initWithString:@"http://www.udus.pl"];
+    WebsiteDownloader *websiteDownloader = [[WebsiteDownloader alloc] initWithURL:website encoding:kNilOptions];
     NSLog(@"%@", [websiteDownloader showContentOfWebsite]);
     
 }
