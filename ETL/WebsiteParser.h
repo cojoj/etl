@@ -10,4 +10,7 @@
 
 @interface WebsiteParser : NSObject
 
+- (id) initWithWebsiteContent:(NSString *)website regularExpression:(NSRegularExpression *)regEx;
+- (BOOL) parse;
+
 @end

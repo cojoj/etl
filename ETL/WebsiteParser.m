@@ -8,6 +8,28 @@
 
 #import "WebsiteParser.h"
 
+@interface WebsiteParser ()
+
+@property (strong, nonatomic) NSString *websiteToParse;
+@property (strong, nonatomic) NSRegularExpression *regEx;
+
+@end
+
 @implementation WebsiteParser
+
+- (id) initWithWebsiteContent:(NSString *)website regularExpression:(NSRegularExpression *)regEx
+{
+    if (self = [super init])
+    {
+        [self setWebsiteToParse:website];
+        [self setRegEx:regEx];
+    }
+    return self;
+}
+
+- (BOOL) parse
+{
+    
+}
 
 @end
