@@ -19,7 +19,6 @@
 {
     NSURL *website = [[NSURL alloc] initWithString:@"http://www.findata.co.nz/markets/NYSE/symbols/A.htm"];
     WebsiteDownloader *websiteDownloader = [[WebsiteDownloader alloc] initWithURL:website];
-    [websiteDownloader downloadContentOfWebsite];
     NSLog(@"%@", [websiteDownloader showContentOfWebsite]);
     
 }

@@ -12,15 +12,27 @@
 
 @property (strong, nonatomic) NSURL *websiteURL;
 @property (strong, nonatomic) NSData *websiteSource;
+@property (nonatomic) NSStringEncoding websiteEncoding;
 
 @end
 
 @implementation WebsiteDownloader
 
-- (id)initWithURL:(NSURL *)url
+- (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding
 {
-    if (self = [super init]) {
+    if (self = [super init])
+    {
         [self setWebsiteURL:url];
+        
+        if (!encoding)
+        {
+            [self setWebsiteEncoding:NSUTF8StringEncoding];
+        } else
+        {
+            [self setWebsiteEncoding:encoding];
+        }
+        
+        
     }
     return self;
 }
@@ -33,8 +45,8 @@
 
 - (NSString *)showContentOfWebsite
 {
-    NSString *web = [[NSString alloc] initWithData:self.websiteSource encoding:NSUTF8StringEncoding];
-    return web;
+        NSString *web = [[NSString alloc] initWithData:self.websiteSource encoding:NSUTF8StringEncoding];
+        return web;
 }
 
 @end
