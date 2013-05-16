@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "WebsiteDownloader.h"
 
+#define NYSE @"http://www.findata.co.nz/Markets/NYSE.htm"
+
 @implementation AppDelegate
 
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
@@ -17,9 +19,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSURL *website = [[NSURL alloc] initWithString:@"http://www.udus.pl"];
+    NSURL *website = [[NSURL alloc] initWithString:NYSE];
     WebsiteDownloader *websiteDownloader = [[WebsiteDownloader alloc] initWithURL:website encoding:kNilOptions];
-    NSLog(@"%@", [websiteDownloader showContentOfWebsite]);
+    NSLog(@"%@", [websiteDownloader getContentOfWebsite]);
     
 }
 
