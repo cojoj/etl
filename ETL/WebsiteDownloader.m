@@ -27,7 +27,8 @@
         if (!encoding)
         {
             [self setWebsiteEncoding:NSUTF8StringEncoding];
-        } else
+        }
+        else
         {
             [self setWebsiteEncoding:encoding];
         }
@@ -51,7 +52,8 @@
                                      informativeTextWithFormat:@""];
         [downloadAlert runModal];
         return nil;
-    } else
+    }
+    else
     {
         return tmpWebsite;
     }
