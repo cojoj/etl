@@ -27,9 +27,4 @@
     return self;
 }
 
-- (BOOL) parse
-{
-    
-}
-
 @end

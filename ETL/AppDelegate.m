@@ -21,8 +21,7 @@
 {
     NSURL *website = [[NSURL alloc] initWithString:NYSE];
     WebsiteDownloader *websiteDownloader = [[WebsiteDownloader alloc] initWithURL:website encoding:kNilOptions];
-    NSLog(@"%@", [websiteDownloader getContentOfWebsite]);
-    
+    [websiteDownloader saveContentToFile:@"test" withFileExtension:@"txt"];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "mckomo.ETL" in the user's Application Support directory.

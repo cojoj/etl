@@ -65,4 +65,17 @@
     return web;
 }
 
+- (void)saveContentToFile:(NSString *)fileName withFileExtension:(NSString *)fileExtension
+{
+    NSString *path = [[NSString alloc] initWithFormat:@"%@/Desktop/%@.%@", NSHomeDirectory(), fileName, fileExtension];
+    if ([self.websiteSource writeToFile:path atomically:YES])
+    {
+        NSLog(@"Zapisano do: %@", path);
+    }
+    else
+    {
+        NSLog(@"Zapis do pliku się nie powiódł");
+    }
+}
+
 @end
