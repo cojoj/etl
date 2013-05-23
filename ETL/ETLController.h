@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UrlGenerator.h"
 
 @interface ETLController : NSObject
-{
-    
-}
+
 -(void) downloadWebsitesContent;
 -(void) parseWebsitesContent;
 -(void) saveParsedData;
--(void) masterExplosion;
+-(void) fullCycle;
+
 @end

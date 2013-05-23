@@ -19,9 +19,9 @@
         return self;
     }
 
-    - (NSString *) generateUrlWithParameters:(NSArray *) parameters;
+    - (NSString *) generateUrlWithParameters:(NSDictionary *) parameters;
     {
-        
+        return [self pattern];
     }
 
 @end

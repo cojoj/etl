@@ -8,6 +8,29 @@
 
 #import "ETLController.h"
 
+
 @implementation ETLController
-    -(void) downloadWebsitesContent;
+
+-(void) downloadWebsitesContent
+{
+    UrlGenerator* generator = [[UrlGenerator alloc] initWithPattern:@"http://udus.pl/{:market}/{:letter}.htm"];
+    NSLog( [generator generateUrlWithParameters:nil] );
+}
+
+-(void) parseWebsitesContent
+{
+    NSLog( @"parseWebsitesContent" );
+}
+
+-(void) saveParsedData
+{
+    NSLog( @"saveParsedData" );
+}
+
+-(void) fullCycle
+{
+    NSLog( @"fullCycle" );
+}
+
+
 @end

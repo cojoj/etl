@@ -8,20 +8,23 @@
 
 #import "AppDelegate.h"
 #import "WebsiteDownloader.h"
+#import "CompanyDataExtractor.h"
+#import "ETLController.h"
+
 
 #define NYSE @"http://www.findata.co.nz/Markets/NYSE.htm"
 
 @implementation AppDelegate
 
+@synthesize etl;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize managedObjectContext = _managedObjectContext;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSURL *website = [[NSURL alloc] initWithString:NYSE];
-    WebsiteDownloader *websiteDownloader = [[WebsiteDownloader alloc] initWithURL:website encoding:kNilOptions];
-    [websiteDownloader saveContentToFile:@"test" withFileExtension:@"txt"];
+    // Init ETL controller
+    [self setEtl:[[ETLController alloc] init]];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "mckomo.ETL" in the user's Application Support directory.
@@ -126,17 +129,44 @@
 }
 
 // Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
+
+- (IBAction)downloadAction:(id)sender
+{
+    [[self etl] downloadWebsitesContent];
+}
+
+- (IBAction)extractAction:(id)sender
+{
+    [[self etl] parseWebsitesContent];
+}
+
+- (IBAction)fullCycleAction:(id)sender
+{
+    [[self etl] fullCycle];
+}
+
 - (IBAction)saveAction:(id)sender
 {
-    NSError *error = nil;
+    [[self etl] saveParsedData];
+//    NSError *error = nil;
+//    
+//    if (![[self managedObjectContext] commitEditing]) {
+//        NSLog(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
+//    }
+//    
+//    if (![[self managedObjectContext] save:&error]) {
+//        [[NSApplication sharedApplication] presentError:error];
+//    }
+}
+
+- (IBAction)showAction:(id)sender
+{
+    NSLog( @"Show action" );
+}
+
+- (IBAction)updateMarketAction:(id)sender
+{
     
-    if (![[self managedObjectContext] commitEditing]) {
-        NSLog(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
-    }
-    
-    if (![[self managedObjectContext] save:&error]) {
-        [[NSApplication sharedApplication] presentError:error];
-    }
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender

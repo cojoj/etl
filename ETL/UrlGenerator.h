@@ -13,7 +13,7 @@
 @property (strong, atomic) NSString* pattern;
 
 - (id) initWithPattern:(NSString *) pattern;
-- (NSString *) generateUrlWithParameters:(NSArray *) parameters;
+- (NSString *) generateUrlWithParameters:(NSDictionary *) parameters;
 
 @end
  
