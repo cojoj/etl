@@ -24,6 +24,7 @@
 - (IBAction)fullCycleAction:(id)sender;
 - (IBAction)showAction:(id)sender;
 - (IBAction)updateMarketAction:(id)sender;
+- (IBAction)restartETLAction:(id)sender;
 
 
 @end

@@ -18,6 +18,7 @@
 		BF596ED917452480003178FC /* ETLController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF596ED817452480003178FC /* ETLController.m */; };
 		BF8EE0A3174A8A5600335F46 /* UrlGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8EE0A2174A8A5600335F46 /* UrlGenerator.m */; };
 		BF96C2F5174D0B0D0044D4E8 /* CompanyDataExtractor.m in Sources */ = {isa = PBXBuildFile; fileRef = BF96C2F4174D0B0D0044D4E8 /* CompanyDataExtractor.m */; };
+		BFCA5C45174E695700ACD0F9 /* sample.txt in Resources */ = {isa = PBXBuildFile; fileRef = BFCA5C44174E695700ACD0F9 /* sample.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		BF8EE0A2174A8A5600335F46 /* UrlGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlGenerator.m; sourceTree = "<group>"; };
 		BF96C2F3174D0B0D0044D4E8 /* CompanyDataExtractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDataExtractor.h; sourceTree = "<group>"; };
 		BF96C2F4174D0B0D0044D4E8 /* CompanyDataExtractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDataExtractor.m; sourceTree = "<group>"; };
+		BFCA5C44174E695700ACD0F9 /* sample.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		BF13AEF817420C1C00E41981 /* ETL */ = {
 			isa = PBXGroup;
 			children = (
+				BFCA5C44174E695700ACD0F9 /* sample.txt */,
 				BF13AF0417420C1C00E41981 /* AppDelegate.h */,
 				BF13AF0517420C1C00E41981 /* AppDelegate.m */,
 				BF13AF1217420E7500E41981 /* WebsiteDownloader.h */,
@@ -179,6 +182,7 @@
 				BF13AEFD17420C1C00E41981 /* InfoPlist.strings in Resources */,
 				BF13AF0317420C1C00E41981 /* Credits.rtf in Resources */,
 				BF13AF0917420C1D00E41981 /* MainMenu.xib in Resources */,
+				BFCA5C45174E695700ACD0F9 /* sample.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

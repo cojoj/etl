@@ -17,9 +17,22 @@
     NSLog( [generator generateUrlWithParameters:nil] );
 }
 
--(void) parseWebsitesContent
+-(void) extractWebsitesContent
 {
-    NSLog( @"parseWebsitesContent" );
+    NSString *websiteContent = [[NSString alloc] initWithContentsOfFile: @"/Users/mckomo/Dropbox/Programy/Objective-C/TestProject/TestProject/sample.txt"];
+    
+//    NSLog( websiteContent );
+    
+    CompanyDataExtractor *extractor = [[CompanyDataExtractor alloc] init];
+    
+    NSArray *data = [extractor extractDataFromWebsiteContent:websiteContent];
+    
+    for( NSString* line in data )
+    {
+        NSLog( @"%@", line );
+    }
+    
+                                 
 }
 
 -(void) saveParsedData

@@ -137,7 +137,7 @@
 
 - (IBAction)extractAction:(id)sender
 {
-    [[self etl] parseWebsitesContent];
+    [[self etl] extractWebsitesContent];
 }
 
 - (IBAction)fullCycleAction:(id)sender
@@ -167,6 +167,11 @@
 - (IBAction)updateMarketAction:(id)sender
 {
     
+}
+
+- (IBAction)restartETLAction:(id)sender
+{
+    NSLog( @"Restart action" );
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender

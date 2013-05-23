@@ -29,7 +29,7 @@
     return self;
 }
 
--(NSArray *) scrapQuotesFromWebsiteContent:(NSString *) websiteContent
+-(NSArray *) extractDataFromWebsiteContent:(NSString *) websiteContent
 {
     // Init container for
     NSMutableArray* quotes = [[NSMutableArray alloc] init];

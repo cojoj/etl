@@ -8,11 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "UrlGenerator.h"
+#import "CompanyDataExtractor.h"
 
 @interface ETLController : NSObject
 
 -(void) downloadWebsitesContent;
--(void) parseWebsitesContent;
+-(void) extractWebsitesContent;
 -(void) saveParsedData;
 -(void) fullCycle;
 
