@@ -14,7 +14,7 @@
 -(void) downloadWebsitesContent
 {
     UrlGenerator* generator = [[UrlGenerator alloc] initWithPattern:@"http://udus.pl/{:market}/{:letter}.htm"];
-    NSLog( [generator generateUrlWithParameters:nil] );
+    NSLog(@"%@", [generator generateUrlWithParameters:nil] );
 }
 
 -(void) parseWebsitesContent

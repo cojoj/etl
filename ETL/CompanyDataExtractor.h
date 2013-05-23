@@ -14,10 +14,6 @@
     NSRegularExpression *regexQuotes;
 }
 
-@property (strong, nonatomic) NSString* websiteContent;
-@property (assign) NSStringEncoding contentEncoding;
-
-
 -(id) init;
 -(NSArray *) extractDataFromWebsiteContent:(NSString *) websiteContent;
 
