@@ -10,9 +10,11 @@
 #import "ETLController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
+{
+    ETLController *etl;
+}
 
 @property (assign) IBOutlet NSWindow *window;
-@property (strong) ETLController *etl;
 
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

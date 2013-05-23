@@ -7,10 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ETLModel.h"
 #import "UrlGenerator.h"
 #import "CompanyDataExtractor.h"
 
 @interface ETLController : NSObject
+{
+//    ETLModel *etlModel;
+}
+
+-(id) init;
 
 -(void) downloadWebsitesContent;
 -(void) extractWebsitesContent;

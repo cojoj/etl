@@ -11,15 +11,31 @@
 
 @implementation ETLController
 
+-init
+{
+    // Init ETL model
+//    etlModel = [[ETLModel alloc] init];
+}
+
 -(void) downloadWebsitesContent
 {
-    UrlGenerator* generator = [[UrlGenerator alloc] initWithPattern:@"http://udus.pl/{:market}/{:letter}.htm"];
+    // Init generator to generate URL to given market quoutes of companies on given letter
+    UrlGenerator *generator = [[UrlGenerator alloc] initWithPattern:@"http://udus.pl/{:market}/{:letter}.htm"];
+    
+//    for( NSString *market in [ETLModel getArrayOfMarkets] )
+//    {
+//        for( NSString *letter in [ETLModel getArrayOfLetter] )
+//        {
+//            NSLog( @"%@%@", market, letter );
+//        }
+//    }
+    
     NSLog(@"%@", [generator generateUrlWithParameters:nil] );
 }
 
 -(void) extractWebsitesContent
 {
-    NSString *websiteContent = [[NSString alloc] initWithContentsOfFile: @"/Users/mckomo/Dropbox/Programy/Objective-C/TestProject/TestProject/sample.txt"];
+    NSString *websiteContent = [[NSString alloc] initWithContentsOfFile: @"/Users/mateusz/Developer/ETL/ETL/sample.txt"];
     
 //    NSLog( websiteContent );
     
@@ -31,7 +47,6 @@
     {
         NSLog( @"%@", line );
     }
-    
                                  
 }
 

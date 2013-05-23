@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		614A6453174E747100769855 /* ETLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A6452174E747100769855 /* ETLModel.m */; };
 		BF13AEF317420C1C00E41981 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF13AEF217420C1C00E41981 /* Cocoa.framework */; };
 		BF13AEFD17420C1C00E41981 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF13AEFB17420C1C00E41981 /* InfoPlist.strings */; };
 		BF13AEFF17420C1C00E41981 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13AEFE17420C1C00E41981 /* main.m */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		614A6451174E747100769855 /* ETLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ETLModel.h; sourceTree = "<group>"; };
+		614A6452174E747100769855 /* ETLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETLModel.m; sourceTree = "<group>"; };
 		BF13AEEF17420C1C00E41981 /* ETL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ETL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF13AEF217420C1C00E41981 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BF13AEF517420C1C00E41981 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -106,6 +109,8 @@
 				BF13AF0717420C1D00E41981 /* MainMenu.xib */,
 				BF596ED717452480003178FC /* ETLController.h */,
 				BF596ED817452480003178FC /* ETLController.m */,
+				614A6451174E747100769855 /* ETLModel.h */,
+				614A6452174E747100769855 /* ETLModel.m */,
 				BF13AF0A17420C1D00E41981 /* ETL.xcdatamodeld */,
 				BF8EE0A1174A8A5600335F46 /* UrlGenerator.h */,
 				BF8EE0A2174A8A5600335F46 /* UrlGenerator.m */,
@@ -200,6 +205,7 @@
 				BF596ED917452480003178FC /* ETLController.m in Sources */,
 				BF8EE0A3174A8A5600335F46 /* UrlGenerator.m in Sources */,
 				BF96C2F5174D0B0D0044D4E8 /* CompanyDataExtractor.m in Sources */,
+				614A6453174E747100769855 /* ETLModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,16 +7,11 @@
 //
 
 #import "AppDelegate.h"
-#import "WebsiteDownloader.h"
-#import "CompanyDataExtractor.h"
-#import "ETLController.h"
-
 
 #define NYSE @"http://www.findata.co.nz/Markets/NYSE.htm"
 
 @implementation AppDelegate
 
-@synthesize etl;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize managedObjectContext = _managedObjectContext;
@@ -24,7 +19,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Init ETL controller
-    [self setEtl:[[ETLController alloc] init]];
+    etl = [[ETLController alloc] init];
 }
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "mckomo.ETL" in the user's Application Support directory.
@@ -132,22 +127,22 @@
 
 - (IBAction)downloadAction:(id)sender
 {
-    [[self etl] downloadWebsitesContent];
+    [etl downloadWebsitesContent];
 }
 
 - (IBAction)extractAction:(id)sender
 {
-    [[self etl] extractWebsitesContent];
+    [etl extractWebsitesContent];
 }
 
 - (IBAction)fullCycleAction:(id)sender
 {
-    [[self etl] fullCycle];
+    [etl fullCycle];
 }
 
 - (IBAction)saveAction:(id)sender
 {
-    [[self etl] saveParsedData];
+    [etl saveParsedData];
 //    NSError *error = nil;
 //    
 //    if (![[self managedObjectContext] commitEditing]) {
