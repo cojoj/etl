@@ -11,10 +11,13 @@
 
 @implementation ETLController
 
--init
+- (id) init
 {
-    // Init ETL model
-//    etlModel = [[ETLModel alloc] init];
+    if (self = [super init])
+    {
+        etlModel = [[ETLModel alloc] init];
+    }
+    return self;
 }
 
 -(void) downloadWebsitesContent

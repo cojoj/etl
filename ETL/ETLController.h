@@ -13,7 +13,7 @@
 
 @interface ETLController : NSObject
 {
-//    ETLModel *etlModel;
+    ETLModel *etlModel;
 }
 
 -(id) init;
