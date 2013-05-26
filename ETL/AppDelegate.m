@@ -12,10 +12,6 @@
 
 @implementation AppDelegate
 
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize managedObjectContext = _managedObjectContext;
-
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Init ETL controller

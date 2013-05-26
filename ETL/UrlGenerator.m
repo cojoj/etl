@@ -19,9 +19,19 @@
         return self;
     }
 
-    - (NSString *) generateUrlWithParameters:(NSDictionary *) parameters;
+    - (NSString *) generateUrlWithParameters:(NSArray *) parameters;
     {
-        return [self pattern];
+        NSMutableString *url = [NSMutableString stringWithString:[self pattern]];
+        
+        for( NSUInteger i = 1; i <= [parameters count]; i++ )
+        {
+            [url replaceOccurrencesOfString: [NSString stringWithFormat:@"$%i", i]
+                                 withString: [parameters objectAtIndex:i-1]
+                                    options: 0
+                                      range: NSMakeRange(0, [url length])];
+        }
+        
+        return url;
     }
 
 @end

@@ -23,17 +23,19 @@
 -(void) downloadWebsitesContent
 {
     // Init generator to generate URL to given market quoutes of companies on given letter
-    UrlGenerator *generator = [[UrlGenerator alloc] initWithPattern:@"http://udus.pl/{:market}/{:letter}.htm"];
+    UrlGenerator *generator = [[UrlGenerator alloc] initWithPattern:@"http://findata.co.nz/Markets/$1/$2.htm"];
     
-//    for( NSString *market in [ETLModel getArrayOfMarkets] )
-//    {
-//        for( NSString *letter in [ETLModel getArrayOfLetter] )
-//        {
-//            NSLog( @"%@%@", market, letter );
-//        }
-//    }
+    [generator generateUrlWithParameters:@[@"1", @"2"]];
     
-    NSLog(@"%@", [generator generateUrlWithParameters:nil] );
+    for( NSString *market in [ETLModel getArrayOfMarkets] )
+    {
+        for( NSString *letter in [ETLModel getArrayOfLetter] )
+        {
+            NSString* url= [generator generateUrlWithParameters:@[market, letter]];
+            NSLog( url );
+        }
+    }
+    
 }
 
 -(void) extractWebsitesContent
