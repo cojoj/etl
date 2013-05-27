@@ -10,6 +10,6 @@
 
 @interface fileStorage : NSObject
 
-- (id) initWithPath:(NSString *)path;
+- (id) initWithMainFolderPath:(NSString *)path;
 
 @end

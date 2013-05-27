@@ -16,13 +16,13 @@
 
 @implementation fileStorage
 
-- (id) initWithPath:(NSString *)path
+- (id) initWithMainFolderPath:(NSString *)path
 {
     if (self = [super init])
     {
         self.mainFolderPath = path;
     }
-    
+
     return self;
 }
 
