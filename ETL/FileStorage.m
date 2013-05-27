@@ -10,17 +10,25 @@
 
 @interface FileStorage ()
 
-@property (strong, nonatomic) NSString *mainFolderPath;
+@property (strong, nonatomic) NSString *mainDirectoryPath;
+@property (strong, nonatomic) NSFileManager *fileManager;
 
 @end
 
 @implementation FileStorage
 
-- (id) initWithMainFolderAtPath:(NSString *)path
+- (id) initWithMainDirectoryAtPath:(NSString *)path name:(NSString *)name
 {
     if (self = [super init])
     {
-        self.mainFolderPath = path;
+        self.mainDirectoryPath = [NSString stringWithFormat:@"%@/%@", path, name];
+        self.fileManager = [NSFileManager defaultManager];
+        
+        //Checking if directory at given path exsits. If so than nothing happens but if not than we gonna greate it
+        if (![self.fileManager fileExistsAtPath:self.mainDirectoryPath isDirectory:YES])
+        {
+            [self.fileManager createDirectoryAtPath:self.mainDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
+        }
     }
     
     return self;

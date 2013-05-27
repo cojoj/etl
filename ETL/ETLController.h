@@ -11,10 +11,12 @@
 #import "UrlGenerator.h"
 #import "CompanyDataExtractor.h"
 #import "WebsiteDownloader.h"
+#import "FileStorage.h"
 
 @interface ETLController : NSObject
 {
     ETLModel *etlModel;
+    FileStorage *storage;
 }
 
 -(id) init;
