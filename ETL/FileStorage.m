@@ -37,14 +37,34 @@
     return self;
 }
 
-- (void) createDirectoryAtMainDirectoryPathNamed:(NSString *)name
+- (void) createDirectoryInMainDirectoryNamed:(NSString *)name
 {
-    NSString *folderPath = [NSString stringWithFormat:@"%@/%@", self.mainDirectoryPath, name];
+    NSString *dirPath = [NSString stringWithFormat:@"%@/%@", self.mainDirectoryPath, name];
     
-    if (![self.fileManager fileExistsAtPath:folderPath isDirectory:&isDir])
+    if (![self.fileManager fileExistsAtPath:dirPath isDirectory:&isDir])
     {
-        [self.fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
+        [self.fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
     }
+}
+
+- (void) saveContent:(NSString *)content toFilename:(NSString *)name withExtension:(NSString *)extension inDirectory:(NSString *)directory
+{
+    //Creating path with filename and extension where the content should be saved
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@.%@", self.mainDirectoryPath, directory, name, extension];
+    
+    if (![self.fileManager fileExistsAtPath:filePath])
+    {
+        //Save content to file
+        if ([content writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:NULL])
+        {
+            NSLog(@"Zapisano do: %@", filePath);
+
+        } else
+        {
+            NSLog(@"Zapis do pliku się nie powiódł");
+        }
+    }
+
 }
 
 @end

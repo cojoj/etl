@@ -28,7 +28,7 @@
     [generator generateUrlWithParameters:@[@"1", @"2"]];
 
     //Creates subdirectory with websources
-    [storage createDirectoryAtMainDirectoryPathNamed:@"WebSources"];
+    [storage createDirectoryInMainDirectoryNamed:@"WebSources"];
     
     for( NSString *market in [ETLModel getArrayOfMarkets] )
     {
@@ -37,8 +37,11 @@
             NSString *url= [generator generateUrlWithParameters:@[market, letter]];
             
             //Init WebsiteDownloader to download source codes of generated websites
-//            WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
-            NSLog(@"%@", url);
+            WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
+            [storage saveContent:[downloader websiteSource]
+                      toFilename:[NSString stringWithFormat:@"%@_%@", market, letter]
+                   withExtension:@"txt"
+                     inDirectory:@"WebSources"];
         }
     }
     
