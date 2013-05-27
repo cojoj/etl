@@ -16,6 +16,7 @@
     if (self = [super init])
     {
         etlModel = [[ETLModel alloc] init];
+        storage = [[FileStorage alloc] initWithMainDirectoryAtPath:@"/Users/mateusz/Desktop" name:@"ETL"];
     }
     return self;
 }
