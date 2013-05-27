@@ -43,7 +43,7 @@
 
 -(void) extractWebsitesContent
 {
-    NSString *websiteContent = [[NSString alloc] initWithContentsOfFile: @"/Users/mateusz/Developer/ETL/ETL/sample.txt"];
+    NSString *websiteContent = [[NSString alloc] initWithContentsOfFile: @"ETL/sample.txt"];
     
 //    NSLog( websiteContent );
     
