@@ -8,6 +8,22 @@
 
 #import "fileStorage.h"
 
+@interface fileStorage ()
+
+@property (strong, nonatomic) NSString *mainFolderPath;
+
+@end
+
 @implementation fileStorage
+
+- (id) initWithPath:(NSString *)path
+{
+    if (self = [super init])
+    {
+        self.mainFolderPath = path;
+    }
+    
+    return self;
+}
 
 @end
