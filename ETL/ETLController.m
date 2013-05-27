@@ -49,19 +49,28 @@
 
 -(void) extractWebsitesContent
 {
-    NSString *websiteContent = [[NSString alloc] initWithContentsOfFile: @"ETL/sample.txt"];
-    
-//    NSLog( websiteContent );
-    
+    [storage createDirectoryInMainDirectoryNamed:@"CSV"];
     CompanyDataExtractor *extractor = [[CompanyDataExtractor alloc] init];
     
-    NSArray *data = [extractor extractDataFromWebsiteContent:websiteContent];
+    //Creates an NSArray of filenames created from downloaded websources
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [storage mainDirectoryPath], @"WebSources"]
+                                                                         error:NULL];
     
-    for( NSString* line in data )
+    //Iterates through files
+    for (NSString *webSource in files)
     {
-        NSLog( @"%@", line );
-    }
-                                 
+        //Variable with websource from file
+        NSString *websiteContent = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/%@/%@", [storage mainDirectoryPath], @"WebSources", webSource]
+                                                             encoding:NSUTF8StringEncoding
+                                                                error:NULL];
+        //Creating filename 
+        NSString *filename = [NSString stringWithFormat:@"%@", [webSource stringByDeletingPathExtension]];
+        //Extracting RegularExprsssion from the websiteContent
+        NSArray *data = [extractor extractDataFromWebsiteContent:websiteContent];
+        
+        //Saving data to .csv filename
+        [storage saveContent:[data componentsJoinedByString:@"\n"] toFilename:filename withExtension:@"csv" inDirectory:@"CSV"];
+    }                                     
 }
 
 -(void) saveParsedData

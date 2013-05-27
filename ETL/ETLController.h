@@ -20,7 +20,6 @@
 }
 
 -(id) init;
-
 -(void) downloadWebsitesContent;
 -(void) extractWebsitesContent;
 -(void) saveParsedData;

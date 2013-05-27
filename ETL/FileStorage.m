@@ -13,7 +13,6 @@
     BOOL isDir;
 }
 
-@property (strong, nonatomic) NSString *mainDirectoryPath;
 @property (strong, nonatomic) NSFileManager *fileManager;
 
 @end

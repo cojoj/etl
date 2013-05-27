@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface FileStorage : NSObject
-{
-    NSString *mainDirectoryPath;
-    NSFileManager *fileManager;
-}
+
+@property (strong, nonatomic) NSString *mainDirectoryPath;
+
 
 - (id) initWithMainDirectoryAtPath:(NSString *)path name:(NSString *)name;
 - (void) createDirectoryInMainDirectoryNamed:(NSString *)name;

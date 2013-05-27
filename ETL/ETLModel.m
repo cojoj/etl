@@ -11,7 +11,7 @@
 @implementation ETLModel
 
 @synthesize downloadedWebsitesContainer;
-@synthesize extracedCompaniesData;
+@synthesize extracedCompaniesDataContainer;
 
 - (id) init
 {
