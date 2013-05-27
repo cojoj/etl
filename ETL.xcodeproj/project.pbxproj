@@ -63,24 +63,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		61C2A2891753CF480013914C /* File Storage */ = {
-			isa = PBXGroup;
-			children = (
-				61C2A2861753CF430013914C /* FileStorage.h */,
-				61C2A2871753CF430013914C /* FileStorage.m */,
-			);
-			name = "File Storage";
-			sourceTree = "<group>";
-		};
-		7074F2C8174FE63300DE643F /* Website Downloader */ = {
-			isa = PBXGroup;
-			children = (
-				BF13AF1217420E7500E41981 /* WebsiteDownloader.h */,
-				BF13AF1317420E7500E41981 /* WebsiteDownloader.m */,
-			);
-			name = "Website Downloader";
-			sourceTree = "<group>";
-		};
 		BF13AEE617420C1C00E41981 = {
 			isa = PBXGroup;
 			children = (
@@ -132,8 +114,10 @@
 				BF8EE0A2174A8A5600335F46 /* UrlGenerator.m */,
 				BF96C2F3174D0B0D0044D4E8 /* CompanyDataExtractor.h */,
 				BF96C2F4174D0B0D0044D4E8 /* CompanyDataExtractor.m */,
-				61C2A2891753CF480013914C /* File Storage */,
-				7074F2C8174FE63300DE643F /* Website Downloader */,
+				61C2A2861753CF430013914C /* FileStorage.h */,
+				61C2A2871753CF430013914C /* FileStorage.m */,
+				BF13AF1217420E7500E41981 /* WebsiteDownloader.h */,
+				BF13AF1317420E7500E41981 /* WebsiteDownloader.m */,
 				BF13AEF917420C1C00E41981 /* Supporting Files */,
 			);
 			path = ETL;
