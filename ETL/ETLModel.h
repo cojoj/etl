@@ -10,9 +10,10 @@
 
 @interface ETLModel : NSObject
 
-@property (strong, nonatomic)NSMutableDictionary *downloadedWebsitesContent;
-@property (strong, nonatomic)NSMutableDictionary *extracedCompaniesData;
+@property (strong, nonatomic)NSMutableDictionary *downloadedWebsitesContainer;
+@property (strong, nonatomic)NSMutableDictionary *extracedCompaniesDataContainer;
 
+- (id) init;
 + (NSArray *) getArrayOfLetter;
 + (NSArray *) getArrayOfMarkets;
 

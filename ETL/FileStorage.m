@@ -9,6 +9,9 @@
 #import "FileStorage.h"
 
 @interface FileStorage ()
+{
+    BOOL isDir;
+}
 
 @property (strong, nonatomic) NSString *mainDirectoryPath;
 @property (strong, nonatomic) NSFileManager *fileManager;
@@ -25,13 +28,24 @@
         self.fileManager = [NSFileManager defaultManager];
         
         //Checking if directory at given path exsits. If so than nothing happens but if not than we gonna greate it
-        if ( ! [self.fileManager fileExistsAtPath:self.mainDirectoryPath isDirectory:YES])
+
+        if (![self.fileManager fileExistsAtPath:self.mainDirectoryPath isDirectory:&isDir])
         {
             [self.fileManager createDirectoryAtPath:self.mainDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
         }
     }
     
     return self;
+}
+
+- (void) createDirectoryAtMainDirectoryPathNamed:(NSString *)name
+{
+    NSString *folderPath = [NSString stringWithFormat:@"%@/%@", self.mainDirectoryPath, name];
+    
+    if (![self.fileManager fileExistsAtPath:folderPath isDirectory:&isDir])
+    {
+        [self.fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:NULL];
+    }
 }
 
 @end

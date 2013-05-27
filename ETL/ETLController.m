@@ -27,6 +27,8 @@
     UrlGenerator *generator = [[UrlGenerator alloc] initWithPattern:@"http://findata.co.nz/Markets/$1/$2.htm"];
     [generator generateUrlWithParameters:@[@"1", @"2"]];
 
+    //Creates subdirectory with websources
+    [storage createDirectoryAtMainDirectoryPathNamed:@"WebSources"];
     
     for( NSString *market in [ETLModel getArrayOfMarkets] )
     {
@@ -34,8 +36,10 @@
         {
             NSString *url= [generator generateUrlWithParameters:@[market, letter]];
             
-            //Init WebsiteDownloader to download source codes of generated websites
-//            WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
+            //Init WebsiteDownloader to download source codes of generated website url
+            WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url]
+                                                                          encoding:NSUTF8StringEncoding];
+            [[etlModel downloadedWebsitesContainer] ad];
             NSLog(@"%@", url);
         }
     }

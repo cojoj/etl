@@ -15,5 +15,6 @@
 }
 
 - (id) initWithMainDirectoryAtPath:(NSString *)path name:(NSString *)name;
+- (void) createDirectoryAtMainDirectoryPathNamed:(NSString *)name;
 
 @end
