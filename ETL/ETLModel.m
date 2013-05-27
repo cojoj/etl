@@ -11,21 +11,35 @@
 @implementation ETLModel
 
 @synthesize downloadedWebsitesContainer;
-@synthesize extracedCompaniesDataContainer;
+@synthesize extracedDataContainer;
 
 - (id) init
 {
+    if ( self = [super init] )
+    {
+        self.downloadedWebsitesContainer = [NSMutableDictionary dictionaryWithCapacity: 0];
+        self.extracedDataContainer = [NSMutableDictionary dictionaryWithCapacity: 0];
+    }
     
+    return self;
 }
 
 + (NSArray *) getArrayOfLetter
 {
-    return @[@"A", @"B", @"C"];
+    return @[
+             @"A",
+             @"B",
+             @"C"
+            ];
 }
 
 + (NSArray *) getArrayOfMarkets
 {
-    return @[@"NYSE", @"NASDAQ", @"AMEX"];
+    return @[
+             @"NYSE",
+             @"NASDAQ",
+             @"AMEX"
+            ];
 }
 
 @end

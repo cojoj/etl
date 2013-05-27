@@ -36,7 +36,7 @@
 
 - (IBAction)saveAction:(id)sender
 {
-    [etl saveParsedData];
+    [etl saveExtracedData];
 //    NSError *error = nil;
 //    
 //    if (![[self managedObjectContext] commitEditing]) {

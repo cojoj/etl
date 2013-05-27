@@ -13,16 +13,24 @@
 #import "WebsiteDownloader.h"
 #import "FileStorage.h"
 
+typedef enum {
+    nothingDoneYet = 1,
+    websitesDownloaded,
+    dataExtraced,
+    dataSaved
+} EtlState;
+
 @interface ETLController : NSObject
 {
     ETLModel *etlModel;
     FileStorage *storage;
+    EtlState currentState;
 }
 
 -(id) init;
 -(void) downloadWebsitesContent;
 -(void) extractWebsitesContent;
--(void) saveParsedData;
+-(void) saveExtracedData;
 -(void) fullCycle;
 
 @end

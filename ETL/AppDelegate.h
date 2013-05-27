@@ -15,6 +15,9 @@
 }
 
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSPanel *panel;
+@property (assign) IBOutlet NSProgressIndicator *progressBar;
+
 
 - (IBAction)downloadAction:(id)sender;
 - (IBAction)extractAction:(id)sender;

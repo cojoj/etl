@@ -17,12 +17,20 @@
     {
         etlModel = [[ETLModel alloc] init];
         storage = [[FileStorage alloc] initWithMainDirectoryAtPath:NSHomeDirectory() name:@"ETL"];
+        currentState = (EtlState) nothingDoneYet;
     }
     return self;
 }
 
 -(void) downloadWebsitesContent
 {
+    // Allow websites download only if ETL has nothing yet
+    if ( currentState != (EtlState) nothingDoneYet )
+    {
+        NSLog( @"Action not allowed with current ETL state." );
+        return;
+    }
+    
     // Init generator to generate URL to given market quoutes of companies on given letter
     UrlGenerator *generator = [[UrlGenerator alloc] initWithPattern:@"http://findata.co.nz/Markets/$1/$2.htm"];
     [generator generateUrlWithParameters:@[@"1", @"2"]];
@@ -35,52 +43,73 @@
         for( NSString *letter in [ETLModel getArrayOfLetter] )
         {
             NSString *url= [generator generateUrlWithParameters:@[market, letter]];
+            NSString *filename = [NSString stringWithFormat:@"%@_%@", market, letter];
             
             //Init WebsiteDownloader to download source codes of generated websites
             WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
             [storage saveContent:[downloader websiteSource]
-                      toFilename:[NSString stringWithFormat:@"%@_%@", market, letter]
+                      toFilename:filename
                    withExtension:@"txt"
                      inDirectory:@"WebSources"];
+            [[etlModel downloadedWebsitesContainer] setObject:[downloader websiteSource] forKey:filename];
         }
     }
+    
+    //Change ETL state
+    currentState = (EtlState) websitesDownloaded;
     
 }
 
 -(void) extractWebsitesContent
 {
+    // Allow data extraction only after ETL has downloaded websites
+    if ( currentState != (EtlState) websitesDownloaded )
+    {
+        NSLog( @"Action not allowed with current ETL state." );
+        return;
+    }
+    
+    // Create CSV folder for CSVs
     [storage createDirectoryInMainDirectoryNamed:@"CSV"];
+    
+    // Init extractor object
     CompanyDataExtractor *extractor = [[CompanyDataExtractor alloc] init];
     
-    //Creates an NSArray of filenames created from downloaded websources
-    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@", [storage mainDirectoryPath], @"WebSources"]
-                                                                         error:NULL];
+    NSLog( @"test" );
     
-    //Iterates through files
-    for (NSString *webSource in files)
+    //Iterates through website container
+    for ( NSString* key in [etlModel downloadedWebsitesContainer] )
     {
-        //Variable with websource from file
-        NSString *websiteContent = [NSString stringWithContentsOfFile:[NSString stringWithFormat:@"%@/%@/%@", [storage mainDirectoryPath], @"WebSources", webSource]
-                                                             encoding:NSUTF8StringEncoding
-                                                                error:NULL];
-        //Creating filename 
-        NSString *filename = [NSString stringWithFormat:@"%@", [webSource stringByDeletingPathExtension]];
-        //Extracting RegularExprsssion from the websiteContent
-        NSArray *data = [extractor extractDataFromWebsiteContent:websiteContent];
+        NSLog( @"%@", key );
+        //Extract company data from the stored website content
+        NSArray *data = [extractor extractDataFromWebsiteContent:[[etlModel downloadedWebsitesContainer] objectForKey:key]];
         
         //Saving data to .csv filename
-        [storage saveContent:[data componentsJoinedByString:@"\n"] toFilename:filename withExtension:@"csv" inDirectory:@"CSV"];
-    }                                     
+        [storage saveContent:[data componentsJoinedByString:@"\n"] toFilename:key withExtension:@"csv" inDirectory:@"CSV"];
+    }
+    
+    //Change ETL state
+    currentState = (EtlState) dataExtraced;
+    
 }
 
--(void) saveParsedData
+-(void) saveExtracedData
 {
+    // Allow data to be saved only after ETL has extraced companies data from websites source
+    if ( currentState != (EtlState) dataExtraced )
+    {
+        NSLog( @"Action not allowed with current ETL state." );
+        return;
+    }
+    
     NSLog( @"saveParsedData" );
 }
 
 -(void) fullCycle
 {
-    NSLog( @"fullCycle" );
+    [self downloadWebsitesContent];
+    [self extractWebsitesContent];
+    [self saveExtracedData];
 }
 
 

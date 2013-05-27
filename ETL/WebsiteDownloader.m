@@ -16,6 +16,8 @@
 
 @implementation WebsiteDownloader
 
+@synthesize websiteSource;
+
 //Designated initializer 
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding
 {

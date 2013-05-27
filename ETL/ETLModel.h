@@ -11,7 +11,7 @@
 @interface ETLModel : NSObject
 
 @property (strong, nonatomic)NSMutableDictionary *downloadedWebsitesContainer;
-@property (strong, nonatomic)NSMutableDictionary *extracedCompaniesDataContainer;
+@property (strong, nonatomic)NSMutableDictionary *extracedDataContainer;
 
 - (id) init;
 + (NSArray *) getArrayOfLetter;

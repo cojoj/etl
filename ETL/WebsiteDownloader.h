@@ -13,6 +13,8 @@
 @property (strong, nonatomic) NSString *websiteSource;
 
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding;
+
+#pragma private
 - (NSString *) downloadContentOfWebsite;
 
 @end
