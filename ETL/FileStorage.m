@@ -25,7 +25,7 @@
         self.fileManager = [NSFileManager defaultManager];
         
         //Checking if directory at given path exsits. If so than nothing happens but if not than we gonna greate it
-        if (![self.fileManager fileExistsAtPath:self.mainDirectoryPath isDirectory:YES])
+        if ( ! [self.fileManager fileExistsAtPath:self.mainDirectoryPath isDirectory:YES])
         {
             [self.fileManager createDirectoryAtPath:self.mainDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
         }
