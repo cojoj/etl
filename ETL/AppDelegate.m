@@ -15,8 +15,12 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    // Init market list
+    [[self marketListPopUp] removeAllItems];
+    [[self marketListPopUp] addItemsWithTitles:[ETLModel getArrayOfMarkets]];
     // Init ETL controller
     etl = [[ETLController alloc] init];
+
 }
 
 - (IBAction)downloadAction:(id)sender
@@ -37,15 +41,6 @@
 - (IBAction)saveAction:(id)sender
 {
     [etl saveExtracedData];
-//    NSError *error = nil;
-//    
-//    if (![[self managedObjectContext] commitEditing]) {
-//        NSLog(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
-//    }
-//    
-//    if (![[self managedObjectContext] save:&error]) {
-//        [[NSApplication sharedApplication] presentError:error];
-//    }
 }
 
 - (IBAction)showAction:(id)sender

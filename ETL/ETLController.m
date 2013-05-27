@@ -74,17 +74,17 @@
     
     // Init extractor object
     CompanyDataExtractor *extractor = [[CompanyDataExtractor alloc] init];
-    
-    NSLog( @"test" );
-    
+        
     //Iterates through website container
     for ( NSString* key in [etlModel downloadedWebsitesContainer] )
     {
-        NSLog( @"%@", key );
         //Extract company data from the stored website content
         NSArray *data = [extractor extractDataFromWebsiteContent:[[etlModel downloadedWebsitesContainer] objectForKey:key]];
         
-        //Saving data to .csv filename
+        // Store data in etl container
+        [[etlModel extracedDataContainer] setObject:data forKey:key];
+        
+        //Saving data to .csv file
         [storage saveContent:[data componentsJoinedByString:@"\n"] toFilename:key withExtension:@"csv" inDirectory:@"CSV"];
     }
     

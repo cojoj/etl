@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ETLController.h"
+#import "ETLModel.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
@@ -16,6 +17,7 @@
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSPanel *panel;
+@property (assign) IBOutlet NSPopUpButton* marketListPopUp;
 @property (assign) IBOutlet NSProgressIndicator *progressBar;
 
 
@@ -24,7 +26,6 @@
 - (IBAction)saveAction:(id)sender;
 - (IBAction)fullCycleAction:(id)sender;
 - (IBAction)showAction:(id)sender;
-- (IBAction)updateMarketAction:(id)sender;
 - (IBAction)restartETLAction:(id)sender;
 
 
