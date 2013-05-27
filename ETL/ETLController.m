@@ -27,6 +27,8 @@
     UrlGenerator *generator = [[UrlGenerator alloc] initWithPattern:@"http://findata.co.nz/Markets/$1/$2.htm"];
     [generator generateUrlWithParameters:@[@"1", @"2"]];
 
+    //Creates subdirectory with websources
+    [storage createDirectoryAtMainDirectoryPathNamed:@"WebSources"];
     
     for( NSString *market in [ETLModel getArrayOfMarkets] )
     {
