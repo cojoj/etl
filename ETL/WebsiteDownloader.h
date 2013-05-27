@@ -10,8 +10,8 @@
 
 @interface WebsiteDownloader : NSObject
 
+@property (strong, nonatomic) NSString *websiteSource;
+
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding;
-- (NSString *)getContentOfWebsite;
-- (void)saveContentToFile:(NSString *)fileName withFileExtension:(NSString *)fileExtension;
 
 @end

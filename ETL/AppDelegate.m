@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "WebsiteDownloader.h"
 
 #define NYSE @"http://www.findata.co.nz/Markets/NYSE.htm"
 

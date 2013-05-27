@@ -11,7 +11,6 @@
 @interface WebsiteDownloader ()
 
 @property (strong, nonatomic) NSURL *websiteURL;
-@property (strong, nonatomic) NSData *websiteSource;
 @property (nonatomic) NSStringEncoding websiteEncoding;
 
 @end
@@ -38,13 +37,13 @@
     return self;
 }
 
-- (NSData *)downloadContentOfWebsite
+- (NSString *)downloadContentOfWebsite
 {
-    NSData *tmpWebsite = [NSData dataWithContentsOfURL:self.websiteURL];
+    NSError *error = nil;
+    NSString *tmpWebsite = [NSString stringWithContentsOfURL:self.websiteURL encoding:NSUTF8StringEncoding error:&error];
     
     if (!tmpWebsite)
     {
-        //NSLog(@"Ni chuja, nie ma takieiej strony!");
         NSAlert *downloadAlert = [NSAlert alertWithMessageText:@"Ni chuja, nie ma takieiej strony!"
                                                  defaultButton:@"OK"
                                                alternateButton:nil
@@ -56,25 +55,6 @@
     else
     {
         return tmpWebsite;
-    }
-}
-
-- (NSString *)getContentOfWebsite
-{
-    NSString *web = [[NSString alloc] initWithData:self.websiteSource encoding:NSUTF8StringEncoding];
-    return web;
-}
-
-- (void)saveContentToFile:(NSString *)fileName withFileExtension:(NSString *)fileExtension
-{
-    NSString *path = [[NSString alloc] initWithFormat:@"%@/Desktop/%@.%@", NSHomeDirectory(), fileName, fileExtension];
-    if ([self.websiteSource writeToFile:path atomically:YES])
-    {
-        NSLog(@"Zapisano do: %@", path);
-    }
-    else
-    {
-        NSLog(@"Zapis do pliku się nie powiódł");
     }
 }
 
