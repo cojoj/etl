@@ -10,28 +10,29 @@
 
 @implementation UrlGenerator
 
-    - (id) initWithPattern:(NSString*) pattern
+- (id) initWithPattern:(NSString*) pattern
+{
+    if ( self = [super init] )
     {
-        if ( self = [super init] )
-        {
-            [self setPattern: pattern];
-        }
-        return self;
+        [self setPattern: pattern];
     }
+    
+    return self;
+}
 
-    - (NSString *) generateUrlWithParameters:(NSArray *) parameters;
+- (NSString *) generateUrlWithParameters:(NSArray *) parameters;
+{
+    NSMutableString *url = [NSMutableString stringWithString:[self pattern]];
+        
+    for( int i = 1; i <= [parameters count]; i++ )
     {
-        NSMutableString *url = [NSMutableString stringWithString:[self pattern]];
-        
-        for( NSUInteger i = 1; i <= [parameters count]; i++ )
-        {
-            [url replaceOccurrencesOfString: [NSString stringWithFormat:@"$%i", i]
-                                 withString: [parameters objectAtIndex:i-1]
-                                    options: 0
-                                      range: NSMakeRange(0, [url length])];
-        }
-        
-        return url;
+        [url replaceOccurrencesOfString: [NSString stringWithFormat:@"$%i", i]
+                             withString: [parameters objectAtIndex:i-1]
+                                options: 0
+                                  range: NSMakeRange(0, [url length])];
     }
+    
+    return url;
+}
 
 @end

@@ -1,4 +1,3 @@
-///Users/mckomo/Dropbox/Programy/Objective-C/ETL/ETL.xcodeproj
 //  WebsiteDownloader.m
 //  ETL
 //
@@ -17,6 +16,7 @@
 
 @implementation WebsiteDownloader
 
+//Designated initializer 
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding
 {
     if (self = [super init])
@@ -44,7 +44,7 @@
     
     if (!tmpWebsite)
     {
-        NSAlert *downloadAlert = [NSAlert alertWithMessageText:@"Ni chuja, nie ma takieiej strony!"
+        NSAlert *downloadAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Strona o adresie: %@, nie istnieje", self.websiteURL]
                                                  defaultButton:@"OK"
                                                alternateButton:nil
                                                    otherButton:nil
