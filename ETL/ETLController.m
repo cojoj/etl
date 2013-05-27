@@ -36,20 +36,12 @@
         {
             NSString *url= [generator generateUrlWithParameters:@[market, letter]];
             
-<<<<<<< HEAD
             //Init WebsiteDownloader to download source codes of generated websites
             WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
             [storage saveContent:[downloader websiteSource]
                       toFilename:[NSString stringWithFormat:@"%@_%@", market, letter]
                    withExtension:@"txt"
                      inDirectory:@"WebSources"];
-=======
-            //Init WebsiteDownloader to download source codes of generated website url
-            WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url]
-                                                                          encoding:NSUTF8StringEncoding];
-            [[etlModel downloadedWebsitesContainer] ad];
-            NSLog(@"%@", url);
->>>>>>> 6321b9fbd7350c7864ebda55e2ddbbf4fc418054
         }
     }
     
