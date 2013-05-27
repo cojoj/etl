@@ -24,15 +24,18 @@
 {
     // Init generator to generate URL to given market quoutes of companies on given letter
     UrlGenerator *generator = [[UrlGenerator alloc] initWithPattern:@"http://findata.co.nz/Markets/$1/$2.htm"];
-    
     [generator generateUrlWithParameters:@[@"1", @"2"]];
+
     
     for( NSString *market in [ETLModel getArrayOfMarkets] )
     {
         for( NSString *letter in [ETLModel getArrayOfLetter] )
         {
-            NSString* url= [generator generateUrlWithParameters:@[market, letter]];
-            NSLog( url );
+            NSString *url= [generator generateUrlWithParameters:@[market, letter]];
+            
+            //Init WebsiteDownloader to download source codes of generated websites
+//            WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
+            NSLog(@"%@", url);
         }
     }
     

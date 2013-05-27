@@ -10,6 +10,7 @@
 #import "ETLModel.h"
 #import "UrlGenerator.h"
 #import "CompanyDataExtractor.h"
+#import "WebsiteDownloader.h"
 
 @interface ETLController : NSObject
 {
