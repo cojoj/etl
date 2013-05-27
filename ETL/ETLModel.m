@@ -10,8 +10,13 @@
 
 @implementation ETLModel
 
-@synthesize downloadedWebsitesContent;
+@synthesize downloadedWebsitesContainer;
 @synthesize extracedCompaniesData;
+
+- (id) init
+{
+    
+}
 
 + (NSArray *) getArrayOfLetter
 {
