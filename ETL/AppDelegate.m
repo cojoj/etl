@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 #import "WebsiteDownloader.h"
 
-#define NYSE @"http://www.findata.co.nz/Markets/NYSE.htm"
-
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -45,7 +43,6 @@
 }
 
 
-
 - (IBAction)showAction:(id)sender
 {
     [[self panel] display];
@@ -55,10 +52,7 @@
 - (IBAction)restartETLAction:(id)sender
 {
     [etl restart];
-<<<<<<< HEAD
     NSLog( @"Restart action" );
-=======
->>>>>>> f97dceaffea9a5d21155b099ceacc0ebd40a7d9e
 }
 
 - (void) showProgressBarPanelWithTitle:(NSString *) title
