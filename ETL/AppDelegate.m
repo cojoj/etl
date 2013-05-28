@@ -18,6 +18,7 @@
     // Init market list
     [[self marketListPopUp] removeAllItems];
     [[self marketListPopUp] addItemsWithTitles:[ETLModel getArrayOfMarkets]];
+    
     // Init ETL controller
     etl = [[ETLController alloc] init];
 
@@ -25,7 +26,7 @@
 
 - (IBAction)downloadAction:(id)sender
 {
-    [etl downloadWebsitesContent];
+    return [etl downloadWebsitesContent];
 }
 
 - (IBAction)extractAction:(id)sender
@@ -40,22 +41,36 @@
 
 - (IBAction)saveAction:(id)sender
 {
+    NSLog( @"%f", [[self progressBar] doubleValue] );
     [etl saveExtracedData];
 }
 
 - (IBAction)showAction:(id)sender
 {
+    [[self panel] display];
     NSLog( @"Show action" );
-}
-
-- (IBAction)updateMarketAction:(id)sender
-{
-    NSLog( @"Update market action" );
 }
 
 - (IBAction)restartETLAction:(id)sender
 {
     NSLog( @"Restart action" );
+}
+
+- (void) showProgressBarPanelWithTitle:(NSString *) title
+{
+    [[self panel] setTitle:title];
+    [[self panel] makeKeyAndOrderFront:self];
+}
+
+- (void) updateProgressBarPanelWithProgressLevel:(double) progressLevel
+{
+    [[self progressBar] setDoubleValue:progressLevel];
+    [[self progressBar] startAnimation:self];
+}
+
+- (void) hideProgressBarPanel
+{
+    [[self panel]  orderOut:self];
 }
 
 @end

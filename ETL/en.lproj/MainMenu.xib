@@ -1435,7 +1435,7 @@
 											<string key="NSFrameSize">{421, 361}</string>
 											<reference key="NSSuperview" ref="619651014"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="727723120"/>
+											<reference key="NSNextKeyView" ref="603857347"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -1622,7 +1622,7 @@
 							<string key="NSFrame">{{20, 58}, {423, 379}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="619651014"/>
+							<reference key="NSNextKeyView" ref="727723120"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="603857347"/>
@@ -1790,10 +1790,10 @@
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSWindowTemplate" id="201836662">
-				<int key="NSWindowStyleMask">31</int>
+				<int key="NSWindowStyleMask">23</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 132}, {388, 58}}</string>
-				<int key="NSWTFlags">-1535638528</int>
+				<int key="NSWTFlags">-461896704</int>
 				<string key="NSWindowTitle">Ładowanie</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
@@ -1807,15 +1807,17 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{20, 19}, {348, 20}}</string>
 							<reference key="NSSuperview" ref="301056076"/>
+							<reference key="NSWindow"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSHuggingPriority">{250, 250}</string>
-							<int key="NSpiFlags">16399</int>
+							<int key="NSpiFlags">16397</int>
 							<double key="NSMaxValue">100</double>
 						</object>
 					</array>
 					<string key="NSFrameSize">{388, 58}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSNextKeyView"/>
+					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView" ref="596605407"/>
 					<string key="NSReuseIdentifierKey">_NS:21</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
@@ -2553,27 +2555,11 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">updateMarketAction:</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="901897571"/>
-					</object>
-					<int key="connectionID">728</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">restartETLAction:</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="212711064"/>
 					</object>
 					<int key="connectionID">741</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">panel</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="201836662"/>
-					</object>
-					<int key="connectionID">768</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -2585,19 +2571,51 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">marketList</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="901897571"/>
-					</object>
-					<int key="connectionID">775</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">marketListPopUp</string>
 						<reference key="source" ref="976324537"/>
 						<reference key="destination" ref="901897571"/>
 					</object>
 					<int key="connectionID">777</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">panel</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="201836662"/>
+					</object>
+					<int key="connectionID">778</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">downloadButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="829812993"/>
+					</object>
+					<int key="connectionID">782</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">extractButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="272386963"/>
+					</object>
+					<int key="connectionID">783</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">fullCycleButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="863701460"/>
+					</object>
+					<int key="connectionID">784</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">saveButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="414959855"/>
+					</object>
+					<int key="connectionID">785</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4430,16 +4448,6 @@
 						<reference key="parent" ref="301056076"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">756</int>
-						<reference key="object" ref="383561692"/>
-						<reference key="parent" ref="301056076"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">772</int>
-						<reference key="object" ref="965113407"/>
-						<reference key="parent" ref="301056076"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">678</int>
 						<reference key="object" ref="920096743"/>
 						<reference key="parent" ref="1069704493"/>
@@ -4453,6 +4461,16 @@
 						<int key="objectID">679</int>
 						<reference key="object" ref="909950733"/>
 						<reference key="parent" ref="439893737"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">772</int>
+						<reference key="object" ref="965113407"/>
+						<reference key="parent" ref="301056076"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">756</int>
+						<reference key="object" ref="383561692"/>
+						<reference key="parent" ref="301056076"/>
 					</object>
 				</array>
 			</object>
@@ -4727,7 +4745,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">777</int>
+			<int key="maxID">785</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4741,7 +4759,6 @@
 						<string key="restartETLAction:">id</string>
 						<string key="saveAction:">id</string>
 						<string key="showAction:">id</string>
-						<string key="updateMarketAction:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="downloadAction:">
@@ -4768,18 +4785,30 @@
 							<string key="name">showAction:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="updateMarketAction:">
-							<string key="name">updateMarketAction:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="downloadButton">NSButton</string>
+						<string key="extractButton">NSButton</string>
+						<string key="fullCycleButton">NSButton</string>
 						<string key="marketListPopUp">NSPopUpButton</string>
 						<string key="panel">NSPanel</string>
 						<string key="progressBar">NSProgressIndicator</string>
+						<string key="saveButton">NSButton</string>
 						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="downloadButton">
+							<string key="name">downloadButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="extractButton">
+							<string key="name">extractButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="fullCycleButton">
+							<string key="name">fullCycleButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="marketListPopUp">
 							<string key="name">marketListPopUp</string>
 							<string key="candidateClassName">NSPopUpButton</string>
@@ -4791,6 +4820,10 @@
 						<object class="IBToOneOutletInfo" key="progressBar">
 							<string key="name">progressBar</string>
 							<string key="candidateClassName">NSProgressIndicator</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="saveButton">
+							<string key="name">saveButton</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="window">
 							<string key="name">window</string>

@@ -32,5 +32,6 @@ typedef enum {
 -(void) extractWebsitesContent;
 -(void) saveExtracedData;
 -(void) fullCycle;
+-(void) restart;
 
 @end

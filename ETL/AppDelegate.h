@@ -19,6 +19,12 @@
 @property (assign) IBOutlet NSPanel *panel;
 @property (assign) IBOutlet NSPopUpButton* marketListPopUp;
 @property (assign) IBOutlet NSProgressIndicator *progressBar;
+@property (assign) IBOutlet NSButton *downloadButton;
+@property (assign) IBOutlet NSButton *extractButton;
+@property (assign) IBOutlet NSButton *saveButton;
+@property (assign) IBOutlet NSButton *fullCycleButton;
+
+
 
 
 - (IBAction)downloadAction:(id)sender;
@@ -27,6 +33,11 @@
 - (IBAction)fullCycleAction:(id)sender;
 - (IBAction)showAction:(id)sender;
 - (IBAction)restartETLAction:(id)sender;
+
+- (void) showProgressBarPanelWithTitle:(NSString *) title;
+- (void) updateProgressBarPanelWithProgressLevel:(double) level;
+- (void) hideProgressBarPanel;
+
 
 
 @end

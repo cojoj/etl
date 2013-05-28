@@ -7,6 +7,7 @@
 //
 
 #import "ETLController.h"
+#import "AppDelegate.h"
 
 
 @implementation ETLController
@@ -24,12 +25,20 @@
 
 -(void) downloadWebsitesContent
 {
-    // Allow websites download only if ETL has nothing yet
+    
+    
+    // Allow websites download only if ETL has done nothing so far
     if ( currentState != (EtlState) nothingDoneYet )
     {
         NSLog( @"Action not allowed with current ETL state." );
         return;
     }
+    
+    // Count websites to process
+    double websiteCount = [[ETLModel getArrayOfMarkets] count] * [[ETLModel getArrayOfLetter] count];
+            
+    // Show progress bar
+    [(AppDelegate *) [[NSApplication sharedApplication] delegate] showProgressBarPanelWithTitle:@"Ściąganie stron"];
     
     // Init generator to generate URL to given market quoutes of companies on given letter
     UrlGenerator *generator = [[UrlGenerator alloc] initWithPattern:@"http://findata.co.nz/Markets/$1/$2.htm"];
@@ -52,8 +61,19 @@
                    withExtension:@"txt"
                      inDirectory:@"WebSources"];
             [[etlModel downloadedWebsitesContainer] setObject:[downloader websiteSource] forKey:filename];
+            
+            // Updated progress bar
+            double progressLevel = [[etlModel downloadedWebsitesContainer] count] / websiteCount * 100;
+            [(AppDelegate *) [[NSApplication sharedApplication] delegate] updateProgressBarPanelWithProgressLevel:progressLevel];
+
         }
     }
+    
+    // Hide progress bar
+    [(AppDelegate *) [[NSApplication sharedApplication] delegate] hideProgressBarPanel];
+    
+    // Disable GUI download action button
+    [[(AppDelegate *) [[NSApplication sharedApplication] delegate] downloadButton] setEnabled:NO];
     
     //Change ETL state
     currentState = (EtlState) websitesDownloaded;
@@ -68,6 +88,9 @@
         NSLog( @"Action not allowed with current ETL state." );
         return;
     }
+    
+    // Show progress bar
+    [(AppDelegate *) [[NSApplication sharedApplication] delegate] showProgressBarPanelWithTitle:@"Wyciąganie danych"];
     
     // Create CSV folder for CSVs
     [storage createDirectoryInMainDirectoryNamed:@"CSV"];
@@ -86,7 +109,17 @@
         
         //Saving data to .csv file
         [storage saveContent:[data componentsJoinedByString:@"\n"] toFilename:key withExtension:@"csv" inDirectory:@"CSV"];
+        
+        // Updated progress bar
+        double progressLevel = [[etlModel extracedDataContainer] count] / (double) [[etlModel downloadedWebsitesContainer] count] * 100;
+        [(AppDelegate *) [[NSApplication sharedApplication] delegate] updateProgressBarPanelWithProgressLevel:progressLevel];
     }
+    
+    // Hide progress bar
+    [(AppDelegate *) [[NSApplication sharedApplication] delegate] hideProgressBarPanel];
+    
+    // Disable GUI extract action button
+    [[(AppDelegate *) [[NSApplication sharedApplication] delegate] extractButton] setEnabled:NO];
     
     //Change ETL state
     currentState = (EtlState) dataExtraced;
@@ -102,7 +135,15 @@
         return;
     }
     
+    // Disable GUI extract action button
+    [[(AppDelegate *) [[NSApplication sharedApplication] delegate] saveButton] setEnabled:NO];
+    // Disable GUI full cycle action button
+    [[(AppDelegate *) [[NSApplication sharedApplication] delegate] fullCycleButton] setEnabled:NO];
+    
     NSLog( @"saveParsedData" );
+    
+    //Change ETL state
+    currentState = (EtlState) dataSaved;
 }
 
 -(void) fullCycle
@@ -110,6 +151,20 @@
     [self downloadWebsitesContent];
     [self extractWebsitesContent];
     [self saveExtracedData];
+}
+
+-(void) restart
+{
+    // Delete created ETL folder with files
+    
+    // Delete data base records
+    
+    // Enable buttons
+    [[(AppDelegate *) [[NSApplication sharedApplication] delegate] downloadButton] setEnabled:YES];
+    [[(AppDelegate *) [[NSApplication sharedApplication] delegate] extractButton] setEnabled:YES];
+    [[(AppDelegate *) [[NSApplication sharedApplication] delegate] saveButton] setEnabled:YES];
+    [[(AppDelegate *) [[NSApplication sharedApplication] delegate] fullCycleButton] setEnabled:YES];
+
 }
 
 
