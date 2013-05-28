@@ -41,7 +41,7 @@
 
 - (IBAction)fullCycleAction:(id)sender
 {
-    [etl [etl performSelectorInBackground:@selector(fullCycle) withObject:nil];
+    [etl performSelectorInBackground:@selector(fullCycle) withObject:nil];
 }
 
 
