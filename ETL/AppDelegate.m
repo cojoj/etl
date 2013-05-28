@@ -9,8 +9,6 @@
 #import "AppDelegate.h"
 #import "WebsiteDownloader.h"
 
-#define NYSE @"http://www.findata.co.nz/Markets/NYSE.htm"
-
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
@@ -36,7 +34,7 @@
 
 - (IBAction)saveAction:(id)sender
 {
-    [etl performSelectorInBackground:@selector(saveExtracedData) withObject:nil];
+    [etl performSelectorInBackground:@selector(saveExtractedData) withObject:nil];
 }
 
 - (IBAction)fullCycleAction:(id)sender

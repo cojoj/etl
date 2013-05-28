@@ -80,7 +80,7 @@
     
 }
 
--(void) extractWebsitesContent
+-(void) extractCompanyData
 {
     // Allow data extraction only after ETL has downloaded websites
     if ( currentState != (EtlState) websitesDownloaded )
@@ -126,7 +126,7 @@
     
 }
 
--(void) saveExtracedData
+-(void) saveExtractedData
 {
     // Allow data to be saved only after ETL has extraced companies data from websites source
     if ( currentState != (EtlState) dataExtraced )
@@ -149,8 +149,8 @@
 -(void) fullCycle
 {
     [self downloadWebsitesContent];
-    [self extractWebsitesContent];
-    [self saveExtracedData];
+    [self extractCompanyData];
+    [self saveExtractedData];
 }
 
 -(void) restart
