@@ -26,24 +26,25 @@
 
 - (IBAction)downloadAction:(id)sender
 {
-    return [etl downloadWebsitesContent];
+    [etl performSelectorInBackground:@selector(downloadWebsitesContent) withObject:nil];
 }
 
 - (IBAction)extractAction:(id)sender
 {
-    [etl extractWebsitesContent];
-}
-
-- (IBAction)fullCycleAction:(id)sender
-{
-    [etl fullCycle];
+    [etl performSelectorInBackground:@selector(extractCompanyData) withObject:nil];
 }
 
 - (IBAction)saveAction:(id)sender
 {
-    NSLog( @"%f", [[self progressBar] doubleValue] );
-    [etl saveExtracedData];
+    [etl performSelectorInBackground:@selector(saveExtracedData) withObject:nil];
 }
+
+- (IBAction)fullCycleAction:(id)sender
+{
+    [etl [etl performSelectorInBackground:@selector(fullCycle) withObject:nil];
+}
+
+
 
 - (IBAction)showAction:(id)sender
 {
@@ -53,7 +54,7 @@
 
 - (IBAction)restartETLAction:(id)sender
 {
-    NSLog( @"Restart action" );
+    [etl restart];
 }
 
 - (void) showProgressBarPanelWithTitle:(NSString *) title
