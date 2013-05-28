@@ -32,7 +32,7 @@ typedef enum {
 
 -(id) init;
 -(void) downloadWebsitesContent;
--(void) extractWebsitesContent;
+-(void) extractCompanyData;
 -(void) saveExtracedData;
 -(void) fullCycle;
 -(void) restart;
