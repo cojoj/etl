@@ -55,7 +55,10 @@
 - (IBAction)restartETLAction:(id)sender
 {
     [etl restart];
+<<<<<<< HEAD
     NSLog( @"Restart action" );
+=======
+>>>>>>> f97dceaffea9a5d21155b099ceacc0ebd40a7d9e
 }
 
 - (void) showProgressBarPanelWithTitle:(NSString *) title
