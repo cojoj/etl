@@ -25,8 +25,6 @@
 
 -(void) downloadWebsitesContent
 {
-    
-    
     // Allow websites download only if ETL has done nothing so far
     if ( currentState != (EtlState) nothingDoneYet )
     {
@@ -165,7 +163,11 @@
 
 -(void) restart
 {
+    // Change ETLState to default state of the application after run
+    currentState = (EtlState) nothingDoneYet;
+    
     // Delete created ETL folder with files
+    [[NSFileManager defaultManager] removeItemAtPath:[storage mainDirectoryPath] error:NULL];
     
     // Delete data base records
     
