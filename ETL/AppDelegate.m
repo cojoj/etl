@@ -53,6 +53,7 @@
 
 - (IBAction)restartETLAction:(id)sender
 {
+    [etl restart];
     NSLog( @"Restart action" );
 }
 

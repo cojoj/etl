@@ -13,6 +13,9 @@
 #import "WebsiteDownloader.h"
 #import "FileStorage.h"
 
+#define TXT_EXTENSION @"txt"
+#define CSV_EXTENSION @"csv"
+
 typedef enum {
     nothingDoneYet = 1,
     websitesDownloaded,

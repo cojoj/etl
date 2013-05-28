@@ -58,7 +58,7 @@
             WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
             [storage saveContent:[downloader websiteSource]
                       toFilename:filename
-                   withExtension:@"txt"
+                   withExtension:TXT_EXTENSION
                      inDirectory:@"WebSources"];
             [[etlModel downloadedWebsitesContainer] setObject:[downloader websiteSource] forKey:filename];
             
@@ -108,7 +108,7 @@
         [[etlModel extracedDataContainer] setObject:data forKey:key];
         
         //Saving data to .csv file
-        [storage saveContent:[data componentsJoinedByString:@"\n"] toFilename:key withExtension:@"csv" inDirectory:@"CSV"];
+        [storage saveContent:[data componentsJoinedByString:@""] toFilename:key withExtension:CSV_EXTENSION inDirectory:@"CSV"];
         
         // Updated progress bar
         double progressLevel = [[etlModel extracedDataContainer] count] / (double) [[etlModel downloadedWebsitesContainer] count] * 100;
