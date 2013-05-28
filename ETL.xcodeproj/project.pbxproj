@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		614A6453174E747100769855 /* ETLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 614A6452174E747100769855 /* ETLModel.m */; };
 		61C2A2881753CF430013914C /* FileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 61C2A2871753CF430013914C /* FileStorage.m */; };
+		61D5570F17553AED00D84759 /* ETL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61D5570D17553AED00D84759 /* ETL.xcdatamodeld */; };
 		BF13AEF317420C1C00E41981 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF13AEF217420C1C00E41981 /* Cocoa.framework */; };
 		BF13AEFD17420C1C00E41981 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BF13AEFB17420C1C00E41981 /* InfoPlist.strings */; };
 		BF13AEFF17420C1C00E41981 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF13AEFE17420C1C00E41981 /* main.m */; };
@@ -26,6 +27,7 @@
 		614A6452174E747100769855 /* ETLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ETLModel.m; sourceTree = "<group>"; };
 		61C2A2861753CF430013914C /* FileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStorage.h; sourceTree = "<group>"; };
 		61C2A2871753CF430013914C /* FileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileStorage.m; sourceTree = "<group>"; };
+		61D5570E17553AED00D84759 /* ETL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ETL.xcdatamodel; sourceTree = "<group>"; };
 		BF13AEEF17420C1C00E41981 /* ETL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ETL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF13AEF217420C1C00E41981 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BF13AEF517420C1C00E41981 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -115,6 +117,7 @@
 				61C2A2871753CF430013914C /* FileStorage.m */,
 				BF13AF1217420E7500E41981 /* WebsiteDownloader.h */,
 				BF13AF1317420E7500E41981 /* WebsiteDownloader.m */,
+				61D5570D17553AED00D84759 /* ETL.xcdatamodeld */,
 				BF13AEF917420C1C00E41981 /* Supporting Files */,
 			);
 			path = ETL;
@@ -204,6 +207,7 @@
 				BF96C2F5174D0B0D0044D4E8 /* CompanyDataExtractor.m in Sources */,
 				614A6453174E747100769855 /* ETLModel.m in Sources */,
 				61C2A2881753CF430013914C /* FileStorage.m in Sources */,
+				61D5570F17553AED00D84759 /* ETL.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +346,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		61D5570D17553AED00D84759 /* ETL.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				61D5570E17553AED00D84759 /* ETL.xcdatamodel */,
+			);
+			currentVersion = 61D5570E17553AED00D84759 /* ETL.xcdatamodel */;
+			path = ETL.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BF13AEE717420C1C00E41981 /* Project object */;
 }
