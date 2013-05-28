@@ -53,18 +53,28 @@
         {
             NSString *url= [generator generateUrlWithParameters:@[market, letter]];
             NSString *filename = [NSString stringWithFormat:@"%@_%@", market, letter];
+            NSString *fullPath = [NSString stringWithFormat:@"%@/WebSources/%@.%@", [storage mainDirectoryPath], filename, TXT_EXTENSION];
             
-            //Init WebsiteDownloader to download source codes of generated websites
-            WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
-            [storage saveContent:[downloader websiteSource]
-                      toFilename:filename
-                   withExtension:TXT_EXTENSION
-                     inDirectory:@"WebSources"];
-            [[etlModel downloadedWebsitesContainer] setObject:[downloader websiteSource] forKey:filename];
+            //Checking if, maybe, files with webSources are saved in the directory 
+            if (![[NSFileManager defaultManager] fileExistsAtPath:fullPath])
+            {
+                //Init WebsiteDownloader to download source codes of generated websites
+                WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
+                [storage saveContent:[downloader websiteSource]
+                          toFilename:filename
+                       withExtension:TXT_EXTENSION
+                         inDirectory:@"WebSources"];
+                [[etlModel downloadedWebsitesContainer] setObject:[downloader websiteSource] forKey:filename];
             
-            // Updated progress bar
-            double progressLevel = [[etlModel downloadedWebsitesContainer] count] / websiteCount * 100;
-            [(AppDelegate *) [[NSApplication sharedApplication] delegate] updateProgressBarPanelWithProgressLevel:progressLevel];
+                // Updated progress bar
+                double progressLevel = [[etlModel downloadedWebsitesContainer] count] / websiteCount * 100;
+                [(AppDelegate *) [[NSApplication sharedApplication] delegate] updateProgressBarPanelWithProgressLevel:progressLevel];
+            }
+            //If the are we are doing nothing - just logging the proper information
+            else
+            {
+                NSLog(@"Plik: %@, już istieje", fullPath);
+            }
 
         }
     }

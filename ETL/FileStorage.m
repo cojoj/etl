@@ -27,7 +27,6 @@
         self.fileManager = [NSFileManager defaultManager];
         
         //Checking if directory at given path exsits. If so than nothing happens but if not than we gonna greate it
-
         if (![self.fileManager fileExistsAtPath:self.mainDirectoryPath isDirectory:&isDir])
         {
             [self.fileManager createDirectoryAtPath:self.mainDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
@@ -41,6 +40,7 @@
 {
     NSString *dirPath = [NSString stringWithFormat:@"%@/%@", self.mainDirectoryPath, name];
     
+    //Checking if directory at given path exsits. If so than nothing happens but if not than we gonna greate it
     if (![self.fileManager fileExistsAtPath:dirPath isDirectory:&isDir])
     {
         [self.fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
