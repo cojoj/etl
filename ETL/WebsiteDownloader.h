@@ -14,7 +14,4 @@
 
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding;
 
-#pragma private
-- (NSString *) downloadContentOfWebsite;
-
 @end

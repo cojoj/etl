@@ -12,6 +12,8 @@
 @property (strong, nonatomic) NSURL *websiteURL;
 @property (nonatomic) NSStringEncoding websiteEncoding;
 
+- (NSString *) downloadContentOfWebsite;
+
 @end
 
 @implementation WebsiteDownloader

@@ -18,7 +18,7 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSPanel *panel;
 @property (assign) IBOutlet NSPopUpButton* marketListPopUp;
-@property (assign) IBOutlet NSProgressIndicator *progressBar;
+@property (weak) IBOutlet NSProgressIndicator *progressBar;
 @property (assign) IBOutlet NSButton *downloadButton;
 @property (assign) IBOutlet NSButton *extractButton;
 @property (assign) IBOutlet NSButton *saveButton;

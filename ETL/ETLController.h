@@ -21,20 +21,23 @@ typedef enum {
     websitesDownloaded,
     dataExtraced,
     dataSaved
-} EtlState;
+} ETLState;
 
 @interface ETLController : NSObject
 {
     ETLModel *etlModel;
     FileStorage *storage;
-    EtlState currentState;
+    ETLState currentState;
 }
 
 -(id) init;
--(void) downloadWebsitesContent;
+-(void) downloadWebsitesSource;
 -(void) extractCompaniesData;
--(void) saveExtracedData;
+-(void) saveExtractedData;
 -(void) fullCycle;
 -(void) restart;
+
+-(FileStorage *) getFileStorage;
+-(ETLModel *) getETLModel;
 
 @end

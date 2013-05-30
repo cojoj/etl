@@ -27,7 +27,6 @@
         self.fileManager = [NSFileManager defaultManager];
         
         //Checking if directory at given path exsits. If so than nothing happens but if not than we gonna greate it
-
         if (![self.fileManager fileExistsAtPath:self.mainDirectoryPath isDirectory:&isDir])
         {
             [self.fileManager createDirectoryAtPath:self.mainDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
@@ -41,16 +40,17 @@
 {
     NSString *dirPath = [NSString stringWithFormat:@"%@/%@", self.mainDirectoryPath, name];
     
+    //Checking if directory at given path exsits. If so than nothing happens but if not than we gonna greate it
     if (![self.fileManager fileExistsAtPath:dirPath isDirectory:&isDir])
     {
         [self.fileManager createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 }
 
-- (void) saveContent:(NSString *)content toFilename:(NSString *)name withExtension:(NSString *)extension inDirectory:(NSString *)directory
+- (void) saveContent:(NSString *)content toFile:(NSString *)fileName withExtension:(NSString *)extension inDirectory:(NSString *)directoryName
 {
     //Creating path with filename and extension where the content should be saved
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@.%@", self.mainDirectoryPath, directory, name, extension];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@/%@.%@", self.mainDirectoryPath, directoryName, fileName, extension];
     
     if (![self.fileManager fileExistsAtPath:filePath])
     {
@@ -65,6 +65,18 @@
         }
     }
 
+}
+
+- (NSString *) loadContentOfFile:(NSString *)filePath
+{
+    NSString *content = [NSString stringWithContentsOfFile:filePath
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:nil];
+    // Alert if there is no file
+    if ( ! content )
+        NSLog( @" Plik %@ nie istnieje.", filePath );
+    
+    return content;
 }
 
 @end
