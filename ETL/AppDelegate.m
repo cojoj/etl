@@ -31,7 +31,7 @@
 
 - (IBAction)extractAction:(id)sender
 {
-    [etl performSelectorInBackground:@selector(extractCompanyData) withObject:nil];
+    [etl performSelectorInBackground:@selector(extractCompaniesData) withObject:nil];
 }
 
 - (IBAction)saveAction:(id)sender
@@ -55,10 +55,8 @@
 - (IBAction)restartETLAction:(id)sender
 {
     [etl restart];
-<<<<<<< HEAD
+
     NSLog( @"Restart action" );
-=======
->>>>>>> f97dceaffea9a5d21155b099ceacc0ebd40a7d9e
 }
 
 - (void) showProgressBarPanelWithTitle:(NSString *) title
@@ -75,6 +73,9 @@
 
 - (void) hideProgressBarPanel
 {
+    [[self progressBar] setDoubleValue:0];
+    [[self progressBar] stopAnimation:self];
+
     [[self panel]  orderOut:self];
 }
 

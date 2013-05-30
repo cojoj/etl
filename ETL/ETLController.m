@@ -164,6 +164,9 @@
     [[(AppDelegate *) [[NSApplication sharedApplication] delegate] extractButton] setEnabled:YES];
     [[(AppDelegate *) [[NSApplication sharedApplication] delegate] saveButton] setEnabled:YES];
     [[(AppDelegate *) [[NSApplication sharedApplication] delegate] fullCycleButton] setEnabled:YES];
+    
+    // Change ETL state
+    currentState = nothingDoneYet;
 
 }
 
