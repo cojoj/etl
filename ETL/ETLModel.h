@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic)NSMutableDictionary *downloadedWebsitesContainer;
 @property (strong, nonatomic)NSMutableDictionary *extracedDataContainer;
+@property (assign)NSInteger companiesCount;
 
 - (id) init;
 + (NSArray *) getArrayOfLetter;

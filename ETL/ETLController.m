@@ -72,8 +72,11 @@
                        withExtension:TXT_EXTENSION
                          inDirectory:@"WebSources"];
             
-                // Updated progress bar
-                double progressLevel = ( [[[self getETLModel] downloadedWebsitesContainer] count] + 1 ) / websiteCount * 100;
+                // Update progress bar
+                double progressLevel =
+                    ( [[[self getETLModel] downloadedWebsitesContainer] count] + 1 )
+                    / websiteCount
+                    * 100;
                 [(AppDelegate *) [[NSApplication sharedApplication] delegate] updateProgressBarPanelWithProgressLevel:progressLevel];
             }
             // Else load content of file   
@@ -85,7 +88,6 @@
             
             // Append web source to model container
             [[[self getETLModel] downloadedWebsitesContainer] setObject:webSource forKey:filename];
-
         }
     }
     
@@ -120,10 +122,14 @@
     // Init extractor object
     CompanyDataExtractor *extractor = [[CompanyDataExtractor alloc] init];
     
-    //Iterates through website container
+    // Create counter of companies
+    NSInteger companiesCounter = 0;
+    
+    //Iterates through websites source container
     for ( NSString* key in [[self getETLModel] downloadedWebsitesContainer] )
-    {
-        NSArray *data;
+    {        
+        NSMutableArray *data;
+        NSString *dataAsString;
         NSString *fullPath = [NSString stringWithFormat:@"%@/CSV/%@.%@", [storage mainDirectoryPath], key, CSV_EXTENSION];
         
         // Checking if CSV file with extraced data is already saved in the directory
@@ -131,14 +137,15 @@
         {
             // Extract company data from the stored website content
             data = [extractor extractDataFromWebsiteContent:[[[self getETLModel] downloadedWebsitesContainer] objectForKey:key]];
-            NSString *dataAsString = [data componentsJoinedByString:@""];
+            // Create string with each company data in new line
+            dataAsString = [data componentsJoinedByString:@""]; // Note that last line of string is empty
             // Saving data to .csv file
             [[self getFileStorage] saveContent:dataAsString
                                         toFile:key
                                  withExtension:CSV_EXTENSION
                                    inDirectory:@"CSV"];
             
-            // Updated progress bar
+            // Update progress bar
             double progressLevel =
                 ( [[[self getETLModel] extracedDataContainer] count] + 1 )
                 / (double) [[[self getETLModel] downloadedWebsitesContainer] count]
@@ -148,12 +155,23 @@
         else
         {
             NSLog(@"Plik: %@, już istieje", fullPath);
-            data = [[self getFileStorage] loadContentOfFile:fullPath];
+            // Load content of CSV file
+            dataAsString = [[self getFileStorage] loadContentOfFile:fullPath];
+            // Split string by line
+            data = [dataAsString componentsSeparatedByString:@"\r"];
+            // Remove last line ( which is empty )
+            [data removeLastObject];
         }
+        
+        // Increment companies counter
+        companiesCounter += [data count];
         
         // Store data in etl container
         [[[self getETLModel] extracedDataContainer] setObject:data forKey:key];
     }
+    
+    // Set count of companies
+    [[self getETLModel] setCompaniesCount:companiesCounter];
     
     // Hide progress bar
     [(AppDelegate *) [[NSApplication sharedApplication] delegate] hideProgressBarPanel];
@@ -178,38 +196,59 @@
         NSLog( @"Action not allowed with current ETL state." );
         return;
     }
+        
+    // Show progress bar
+    [(AppDelegate *) [[NSApplication sharedApplication] delegate] showProgressBarPanelWithTitle:@"Zapisywanie danych"];
     
     // Load managed object contex
     NSManagedObjectContext *context = [self managedObjectContext];
     
-    NSLog( @"%li", (unsigned long) [[[self getETLModel] extracedDataContainer] count] );
-    
+    // Create iteration counter
+    NSInteger interationCounter = 0;
+        
     // Save each comapny data to persistent store
     for ( NSString* key in [[self getETLModel] extracedDataContainer] )
     {
         // Get companies data with key {MARKET}_{LETTER} from ETL container 
         NSArray *companiesData = [[[self getETLModel] extracedDataContainer] objectForKey:key];
         
+        // Extract from key ( with pattern {MARKET}_{LETTER} ) market name
+        // by spliting key by "_" and taking first object from compontents
+        NSString *market = [[key componentsSeparatedByString:@";"] objectAtIndex:0];
+                
         // Loop through each company
-        for ( NSString *comapnyData in companiesData )
+        for ( NSString *comapnyDataAsString in companiesData )
         {
-            NSLog(comapnyData);
+            // Split string by ";" 
+            NSArray *companyData = [comapnyDataAsString componentsSeparatedByString:@";"];
             
             // Create a new managed object
             NSManagedObject *newCompany = [NSEntityDescription insertNewObjectForEntityForName:@"Company"
                                                                         inManagedObjectContext:context];
-//            // Set values of new object
-//            [newCompany setValue:[comapnyData objectAtIndex:0] forKey:@"code"];
-//            [newCompany setValue:[comapnyData objectAtIndex:1] forKey:@"name"];
+            // Set values of new object
+            [newCompany setValue:[companyData objectAtIndex:0] forKey:@"code"];
+            [newCompany setValue:[companyData objectAtIndex:1] forKey:@"name"];
+            [newCompany setValue:market forKey:@"market"];
             
             NSError *error = nil;
             
             // Save the object to persistent store
-//            if ( ! [context save:&error] ) {
-//                NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-//            }
+            if ( ! [context save:&error] ) {
+                NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+            }
+            
+            // Update progress bar
+            double progressLevel =
+                ++interationCounter
+                / (double) [[self getETLModel] companiesCount]
+                * 100;
+            
+            [(AppDelegate *) [[NSApplication sharedApplication] delegate] updateProgressBarPanelWithProgressLevel:progressLevel];
         }
     }
+    
+    // Hide progress bar
+    [(AppDelegate *) [[NSApplication sharedApplication] delegate] hideProgressBarPanel];
     
     // Disable GUI extract action button
     [[(AppDelegate *) [[NSApplication sharedApplication] delegate] saveButton] setEnabled:NO];

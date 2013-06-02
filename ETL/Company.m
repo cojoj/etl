@@ -11,6 +11,7 @@
 @implementation Company
 
 @dynamic code;
+@dynamic market;
 @dynamic name;
 
 @end

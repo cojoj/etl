@@ -12,6 +12,7 @@
 
 @synthesize downloadedWebsitesContainer;
 @synthesize extracedDataContainer;
+@synthesize companiesCount;
 
 - (id) init
 {
