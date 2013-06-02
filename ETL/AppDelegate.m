@@ -28,7 +28,7 @@
 #pragma mark - ETL actions ( triggered by button click )
 
 //
-// Run in new thread ETLController::downloadWebsitesContent
+// Run in new thread ETLController::downloadWebsitesSource
 //
 - (IBAction)downloadAction:(id)sender
 {
@@ -36,11 +36,11 @@
 }
 
 //
-// Run in new thread ETLController::extractCompanyData
+// Run in new thread ETLController::extractCompaniesData
 //
 - (IBAction)extractAction:(id)sender
 {
-    [etl performSelectorInBackground:@selector(extractCompanyData) withObject:nil];
+    [etl performSelectorInBackground:@selector(extractCompaniesData) withObject:nil];
 }
 
 //

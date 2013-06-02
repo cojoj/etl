@@ -8,7 +8,7 @@
 
 #import "ETLController.h"
 #import "AppDelegate.h"
-
+#import "Company.h"
 
 @implementation ETLController
 
@@ -123,17 +123,20 @@
     //Iterates through website container
     for ( NSString* key in [[self getETLModel] downloadedWebsitesContainer] )
     {
-        NSString *data;
+        NSArray *data;
         NSString *fullPath = [NSString stringWithFormat:@"%@/CSV/%@.%@", [storage mainDirectoryPath], key, CSV_EXTENSION];
         
         // Checking if CSV file with extraced data is already saved in the directory
         if ( ! [[NSFileManager defaultManager] fileExistsAtPath:fullPath] )
         {
             // Extract company data from the stored website content
-            NSArray *dataArray = [extractor extractDataFromWebsiteContent:[[[self getETLModel] downloadedWebsitesContainer] objectForKey:key]];
-            data = [dataArray componentsJoinedByString:@""];
+            data = [extractor extractDataFromWebsiteContent:[[[self getETLModel] downloadedWebsitesContainer] objectForKey:key]];
+            NSString *dataAsString = [data componentsJoinedByString:@""];
             // Saving data to .csv file
-            [[self getFileStorage] saveContent:data toFile:key withExtension:CSV_EXTENSION inDirectory:@"CSV"];
+            [[self getFileStorage] saveContent:dataAsString
+                                        toFile:key
+                                 withExtension:CSV_EXTENSION
+                                   inDirectory:@"CSV"];
             
             // Updated progress bar
             double progressLevel =
@@ -147,6 +150,7 @@
             NSLog(@"Plik: %@, już istieje", fullPath);
             data = [[self getFileStorage] loadContentOfFile:fullPath];
         }
+        
         // Store data in etl container
         [[[self getETLModel] extracedDataContainer] setObject:data forKey:key];
     }
@@ -181,23 +185,29 @@
     NSLog( @"%li", (unsigned long) [[[self getETLModel] extracedDataContainer] count] );
     
     // Save each comapny data to persistent store
-    for ( NSString* key in [etlModel extracedDataContainer] )
+    for ( NSString* key in [[self getETLModel] extracedDataContainer] )
     {
-        // Get company data from ETL container
-        NSArray *comapnyData = [[etlModel extracedDataContainer] objectForKey:key];
+        // Get companies data with key {MARKET}_{LETTER} from ETL container 
+        NSArray *companiesData = [[[self getETLModel] extracedDataContainer] objectForKey:key];
         
-        // Create a new managed object
-        NSManagedObject *newCompany = [NSEntityDescription insertNewObjectForEntityForName:@"Company" inManagedObjectContext:context];
-        
-        // Set values of new object
-        [newCompany setValue:comapnyData[0] forKey:@"code"];
-        [newCompany setValue:comapnyData[1] forKey:@"name"];
-        
-        NSError *error = nil;
-        
-        // Save the object to persistent store
-        if ( ! [context save:&error] ) {
-            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        // Loop through each company
+        for ( NSString *comapnyData in companiesData )
+        {
+            NSLog(comapnyData);
+            
+            // Create a new managed object
+            NSManagedObject *newCompany = [NSEntityDescription insertNewObjectForEntityForName:@"Company"
+                                                                        inManagedObjectContext:context];
+//            // Set values of new object
+//            [newCompany setValue:[comapnyData objectAtIndex:0] forKey:@"code"];
+//            [newCompany setValue:[comapnyData objectAtIndex:1] forKey:@"name"];
+            
+            NSError *error = nil;
+            
+            // Save the object to persistent store
+//            if ( ! [context save:&error] ) {
+//                NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+//            }
         }
     }
     
