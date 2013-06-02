@@ -12,17 +12,22 @@
 
 @implementation ETLController
 
+//
+// ETLController constructor
+//
 - (id) init
 {
     if (self = [super init])
     {
+        // Set start-up state
         currentState = (ETLState) nothingDoneYet;
     }
     return self;
 }
 
 //
-// Download from http://findata.co.nz websites source with quotes and save it to both .txt file and ETL model container
+// Download from http://findata.co.nz websites source
+// with quotes and save it to both .txt file and ETL model container
 //
 -(void) downloadWebsitesSource
 {
@@ -54,10 +59,10 @@
             NSString *fullPath = [NSString stringWithFormat:@"%@/WebSources/%@.%@", [storage mainDirectoryPath], filename, TXT_EXTENSION];
             NSString *webSource;
             
-            //Checking if file with web source is already saved in the directory 
+            // Checking if file with web source is already saved in the directory 
             if ( ! [[NSFileManager defaultManager] fileExistsAtPath:fullPath] )
             {
-                //Init WebsiteDownloader to download source codes of generated websites
+                // Init WebsiteDownloader to download source codes of generated websites
                 WebsiteDownloader *downloader = [[WebsiteDownloader alloc] initWithURL:[NSURL URLWithString:url] encoding:NSUTF8StringEncoding];
                 
                 // Save web source first to variable then to file
@@ -71,7 +76,7 @@
                 double progressLevel = ( [[[self getETLModel] downloadedWebsitesContainer] count] + 1 ) / websiteCount * 100;
                 [(AppDelegate *) [[NSApplication sharedApplication] delegate] updateProgressBarPanelWithProgressLevel:progressLevel];
             }
-            //If the are we are doing nothing - just logging the proper information
+            // Else load content of file   
             else
             {
                 NSLog(@"Plik: %@, już istieje", fullPath);
@@ -155,8 +160,12 @@
     //Change ETL state
     currentState = (ETLState) dataExtraced;
     
+    NSLog( @"Action extractCompaniesData complete." );
 }
 
+//
+// Save extraced data of companies to persistent store
+//
 -(void) saveExtractedData
 {
     // Allow data to be saved only after ETL has extraced companies data from websites source
@@ -166,17 +175,46 @@
         return;
     }
     
+    // Load managed object contex
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    NSLog( @"%li", (unsigned long) [[[self getETLModel] extracedDataContainer] count] );
+    
+    // Save each comapny data to persistent store
+    for ( NSString* key in [etlModel extracedDataContainer] )
+    {
+        // Get company data from ETL container
+        NSArray *comapnyData = [[etlModel extracedDataContainer] objectForKey:key];
+        
+        // Create a new managed object
+        NSManagedObject *newCompany = [NSEntityDescription insertNewObjectForEntityForName:@"Company" inManagedObjectContext:context];
+        
+        // Set values of new object
+        [newCompany setValue:comapnyData[0] forKey:@"code"];
+        [newCompany setValue:comapnyData[1] forKey:@"name"];
+        
+        NSError *error = nil;
+        
+        // Save the object to persistent store
+        if ( ! [context save:&error] ) {
+            NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+        }
+    }
+    
     // Disable GUI extract action button
     [[(AppDelegate *) [[NSApplication sharedApplication] delegate] saveButton] setEnabled:NO];
     // Disable GUI full cycle action button
     [[(AppDelegate *) [[NSApplication sharedApplication] delegate] fullCycleButton] setEnabled:NO];
     
-    NSLog( @"saveParsedData" );
-    
     //Change ETL state
     currentState = (ETLState) dataSaved;
+    
+     NSLog( @"Action saveParsedData complete." );
 }
 
+//
+// Run full cycle of ETL program
+//
 -(void) fullCycle
 {
     [self downloadWebsitesSource];
@@ -184,6 +222,9 @@
     [self saveExtractedData];
 }
 
+//
+// Run full cycle of ETL program
+//
 -(void) restart
 {
     // Clear pointers to instance veriables
@@ -207,26 +248,53 @@
     // Change ETL state
     currentState = nothingDoneYet;
     
-    NSLog( @"ETL został zrestartowany." );
+    NSLog( @"ETL was restarted." );
 
 }
 
+//
+// Getter for FileStorage instance
+//
 -(FileStorage *) getFileStorage
 {
     // If no file storge init it
     if( ! storage )
+    {
         storage = [[FileStorage alloc] initWithMainDirectoryAtPath:NSHomeDirectory() name:@"ETL"];
+    }
     
     return storage;
 }
 
+//
+// Getter for ETLModel instance
+//
 -(ETLModel *) getETLModel
 {
     // If no file storge init it
     if( ! etlModel )
+    {
         etlModel = [[ETLModel alloc] init];
+    }
     
     return etlModel;
+}
+
+//
+// Getter for managedObjectContext
+//
+- (NSManagedObjectContext *)managedObjectContext
+{
+    NSManagedObjectContext *context = nil;
+    id delegate = [[NSApplication sharedApplication] delegate];
+    
+    // Get context from AppDelegate
+    if ( [delegate performSelector:@selector(managedObjectContext)] )
+    {
+        context = [delegate managedObjectContext];
+    }
+    
+    return context;
 }
 
 

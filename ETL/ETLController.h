@@ -40,4 +40,6 @@ typedef enum {
 -(FileStorage *) getFileStorage;
 -(ETLModel *) getETLModel;
 
+- (NSManagedObjectContext *)managedObjectContext;
+
 @end

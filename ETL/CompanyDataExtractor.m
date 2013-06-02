@@ -10,11 +10,14 @@
 
 @implementation CompanyDataExtractor
 
+//
+// CompanyDataExtractor constructor
+// Init regular expresions to be used during data extraction
+//
 -(id) init
 {
     if ( self = [super init] )
     {
-                
         regexTable = [NSRegularExpression regularExpressionWithPattern:@".*<table class=\"quotes\">(.*)</table>.*"
                                                   options: NSRegularExpressionCaseInsensitive | NSRegularExpressionDotMatchesLineSeparators
                                                     error:nil];
@@ -22,17 +25,18 @@
         regexQuotes = [NSRegularExpression regularExpressionWithPattern:@".*<A [^>]*>([^<]*)</A>.*<td>([^<]*)</td><td[^>]*>([^<]*)</td><td[^>]*>([^<]*)</td><td[^>]*>([^<]*)</td><td[^>]*>([^<]*)</td>.*"
                                                                options: 0
                                                                  error:nil];
-
-        
-        
     }
     return self;
 }
 
+//
+// CompanyDataExtractor constructor
+// Init regular expresions to be used during data extraction
+//
 -(NSArray *) extractDataFromWebsiteContent:(NSString *) websiteContent
 {
-    // Init container for
-    NSMutableArray* quotes = [[NSMutableArray alloc] init];
+    // Init container for extracted data
+    NSMutableArray* dataContainer = [[NSMutableArray alloc] init];
         
     NSString *tableContents = [regexTable stringByReplacingMatchesInString: websiteContent
                                                                    options:0
@@ -42,20 +46,21 @@
     for ( NSString *line in [tableContents componentsSeparatedByString:@"\n"] )
     {
         // Match company symbol, company name, quoutes and company value.
-        // Also add "?" sign to proper matches
-        NSString *quoteOrHtml = [regexQuotes stringByReplacingMatchesInString: line
+        // Also add "?" sign to successful matches
+        NSString *dataOrHtml = [regexQuotes stringByReplacingMatchesInString: line
                                                                       options:0
                                                                         range:NSMakeRange(0, [line length])
                                                                  withTemplate: @"?$1;$2;$3;$4;$5;$6"];
-        
-        if ( [quoteOrHtml length] && [[quoteOrHtml substringToIndex: 1] isEqual: @"?"] )
+        // If match was successful ( match begins with "?" ) append it to 
+        if ( [dataOrHtml length] && [[dataOrHtml substringToIndex: 1] isEqual: @"?"] )
         {
-            NSString *quote = [quoteOrHtml substringFromIndex: 1];
-            [quotes addObject: quote];
+            // Remove "?" and append it to container
+            NSString *data = [dataOrHtml substringFromIndex: 1];
+            [dataContainer addObject: data];
         }
     }
     
-    return quotes;
+    return dataContainer;
 }
 
 @end

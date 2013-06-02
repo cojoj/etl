@@ -28,6 +28,9 @@
 		61C2A2861753CF430013914C /* FileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileStorage.h; sourceTree = "<group>"; };
 		61C2A2871753CF430013914C /* FileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileStorage.m; sourceTree = "<group>"; };
 		61D5570E17553AED00D84759 /* ETL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ETL.xcdatamodel; sourceTree = "<group>"; };
+		BF1382DA175B876600D92F0F /* Company.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
+		BF1382DB175B876600D92F0F /* CompanyDataExtractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompanyDataExtractor.h; sourceTree = "<group>"; };
+		BF1382DC175B8B5A00D92F0F /* Company.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
 		BF13AEEF17420C1C00E41981 /* ETL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ETL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF13AEF217420C1C00E41981 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BF13AEF517420C1C00E41981 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -104,6 +107,9 @@
 			children = (
 				BF13AF0417420C1C00E41981 /* AppDelegate.h */,
 				BF13AF0517420C1C00E41981 /* AppDelegate.m */,
+				BF1382DC175B8B5A00D92F0F /* Company.h */,
+				BF1382DA175B876600D92F0F /* Company.m */,
+				BF1382DB175B876600D92F0F /* CompanyDataExtractor.h */,
 				BF13AF0717420C1D00E41981 /* MainMenu.xib */,
 				BF596ED717452480003178FC /* ETLController.h */,
 				BF596ED817452480003178FC /* ETLController.m */,

@@ -9,6 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #import "ETLController.h"
 #import "ETLModel.h"
+#import "WebsiteDownloader.h"
+#import "Company.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
@@ -24,8 +26,9 @@
 @property (assign) IBOutlet NSButton *saveButton;
 @property (assign) IBOutlet NSButton *fullCycleButton;
 
-
-
+@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
+@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 - (IBAction)downloadAction:(id)sender;
 - (IBAction)extractAction:(id)sender;
@@ -37,7 +40,5 @@
 - (void) showProgressBarPanelWithTitle:(NSString *) title;
 - (void) updateProgressBarPanelWithProgressLevel:(double) level;
 - (void) hideProgressBarPanel;
-
-
 
 @end
