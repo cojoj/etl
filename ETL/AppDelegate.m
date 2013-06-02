@@ -94,12 +94,21 @@
     // Executes the fetch request on the context
     NSArray *companies = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
     
+    // Removes all objects from arrayController to update it
+    [[self.databaseArrayController content] removeAllObjects];
+    
     // Checks if we get an array of companies
-    if ([companies count] > 0) {
+    if ([companies count] > 0)
+    {
         // Go through the companies in array one by one
-        
-        for (Company *company in companies) {
-            NSLog(@"%@, %@, %@", company.market, company.code, company.name);
+        for (Company *company in companies)
+        {
+            // Get only this companies and its code which market is selected in marketListPopUp
+            if ([company.market isEqualToString:[self.marketListPopUp titleOfSelectedItem]])
+            {
+                [self.databaseArrayController addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:company.code, @"code", company.name, @"name", nil]];
+                // NSLog(@"%@, %@, %@", company.market, company.code, company.name);
+            }
         }
     }
 }
