@@ -214,7 +214,8 @@
         
         // Extract from key ( with pattern {MARKET}_{LETTER} ) market name
         // by spliting key by "_" and taking first object from compontents
-        NSString *market = [[key componentsSeparatedByString:@";"] objectAtIndex:0];
+        NSString *marketWithLetter = [[key componentsSeparatedByString:@";"] objectAtIndex:0];
+        NSString *market = [marketWithLetter substringToIndex:[marketWithLetter length]-2];
                 
         // Loop through each company
         for ( NSString *comapnyDataAsString in companiesData )

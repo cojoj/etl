@@ -72,14 +72,35 @@
 //
 - (IBAction)showAction:(id)sender
 {
-    // Fetch the devices from persistent data store
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Company"];
-    NSMutableArray *companies = [[managedObjectContext executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    // Create the fetch request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     
-    for( Company* company in companies )
-    {
-        NSLog( @"%@ - %@", company.code, company.name);
+    // Entity whose contents we want to read
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.managedObjectContext];
+    
+    // We will sort the data by markets and by codes
+    NSSortDescriptor *marketSort = [[NSSortDescriptor alloc] initWithKey:@"market" ascending:YES];
+    NSSortDescriptor *codeSort = [[NSSortDescriptor alloc] initWithKey:@"code" ascending:YES];
+    
+    // Creating NSArray with sort descriptors
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:marketSort, codeSort, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Tellthe request that we want to read the contents of the Comapny entity
+    [fetchRequest setEntity:entity];
+    
+    NSError *requestError = nil;
+    
+    // Executes the fetch request on the context
+    NSArray *companies = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
+    
+    // Checks if we get an array of companies
+    if ([companies count] > 0) {
+        // Go through the companies in array one by one
+        
+        for (Company *company in companies) {
+            NSLog(@"%@, %@, %@", company.market, company.code, company.name);
+        }
     }
 }
 
