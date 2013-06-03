@@ -12,10 +12,24 @@
 
 @property (strong, nonatomic) NSString *mainDirectoryPath;
 
-
+/**
+ * Initializes main directory where application data will be stored
+ */
 - (id) initWithMainDirectoryAtPath:(NSString *)path name:(NSString *)name;
+
+/**
+ * Creates new directory in main directory (created in designated initializer) named after parameter
+ */
 - (void) createDirectoryInMainDirectoryNamed:(NSString *)name;
+
+/**
+ * Saves NSString content to specified file (with given extension) in directory given as a last parameter
+ */
 - (void) saveContent:(NSString *)content toFile:(NSString *)name withExtension:(NSString *)extension inDirectory:(NSString *)directory;
+
+/**
+ * Loads data from given path and checks if the given files exsists. If yes, than method returns NSString with content of this file
+ */
 - (NSString *) loadContentOfFile:(NSString *)filePath;
 
 @end
