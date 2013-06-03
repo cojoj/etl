@@ -13,8 +13,19 @@
 
 @interface Company : NSManagedObject
 
-@property (nonatomic, retain) NSString * code;
-@property (nonatomic, retain) NSString * market;
-@property (nonatomic, retain) NSString * name;
+/**
+ * Market code of company
+ */
+@property (nonatomic, retain) NSString *code;
+
+/**
+ * Name of market where comapny is quoted
+ */
+@property (nonatomic, retain) NSString *market;
+
+/**
+ * Name of company
+ */
+@property (nonatomic, retain) NSString *name;
 
 @end

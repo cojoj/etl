@@ -73,7 +73,7 @@ typedef enum {
 - (NSArray *) makeFetchRequest;
 
 /**
- * Flusch data base
+ * Flush data base
  */
 - (void) deleteAllObjectsFromCoreData;
 

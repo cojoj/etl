@@ -19,10 +19,6 @@
 
 @implementation FileStorage
 
-//
-// FileStorage constructor
-// Create directory to be root of application file storage
-//
 - (id) initWithMainDirectoryAtPath:(NSString *)path name:(NSString *)name
 {
     if (self = [super init])
@@ -40,9 +36,6 @@
     return self;
 }
 
-//
-// Create directory in root (main directory) of application file storage
-//
 - (void) createDirectoryInMainDirectoryNamed:(NSString *)name
 {
     NSString *dirPath = [NSString stringWithFormat:@"%@/%@", self.mainDirectoryPath, name];
@@ -54,9 +47,6 @@
     }
 }
 
-//
-// Save content to file
-//
 - (void) saveContent:(NSString *)content toFile:(NSString *)fileName withExtension:(NSString *)extension inDirectory:(NSString *)directoryName
 {
     //Creating path with filename and extension where the content should be saved
@@ -77,9 +67,6 @@
 
 }
 
-//
-// Load content from file
-//
 - (NSString *) loadContentOfFile:(NSString *)filePath
 {
     NSString *content = [NSString stringWithContentsOfFile:filePath

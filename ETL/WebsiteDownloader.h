@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSString *websiteSource;
 
 /**
- * WebsiteDownloader constructor
+ * Designeted initializer for class which downloads web source from given URL with encoding (default is UTF8).
  */
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding;
 
