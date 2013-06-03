@@ -1436,7 +1436,7 @@
 											<string key="NSFrameSize">{421, 361}</string>
 											<reference key="NSSuperview" ref="619651014"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="727723120"/>
+											<reference key="NSNextKeyView" ref="603857347"/>
 											<string key="NSReuseIdentifierKey">_NS:13</string>
 											<bool key="NSEnabled">YES</bool>
 											<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
@@ -1618,7 +1618,7 @@
 							<string key="NSFrame">{{20, 58}, {423, 379}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="619651014"/>
+							<reference key="NSNextKeyView" ref="727723120"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<int key="NSsFlags">133682</int>
 							<reference key="NSVScroller" ref="603857347"/>
@@ -1757,6 +1757,7 @@
 							<string key="NSFrame">{{300, 10}, {149, 32}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="794598793">
@@ -1804,6 +1805,7 @@
 							<string key="NSFrame">{{20, 19}, {348, 20}}</string>
 							<reference key="NSSuperview" ref="301056076"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSHuggingPriority">{250, 250}</string>
 							<int key="NSpiFlags">16397</int>
@@ -4624,6 +4626,8 @@
 				<string key="350.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="351.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="354.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<boolean value="YES" key="371.IBNSWindowAutoPositionCentersHorizontal"/>
+				<boolean value="YES" key="371.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="371.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="371.IBWindowTemplateEditedContentRect">{{380, 496}, {480, 360}}</string>
 				<integer value="1" key="371.NSWindowTemplate.visibleAtLaunch"/>
@@ -4809,6 +4813,8 @@
 				<string key="74.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="740.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="75.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<boolean value="YES" key="750.IBNSWindowAutoPositionCentersHorizontal"/>
+				<boolean value="YES" key="750.IBNSWindowAutoPositionCentersVertical"/>
 				<string key="750.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="750.NSWindowTemplate.visibleAtLaunch"/>
 				<array class="NSMutableArray" key="751.IBNSViewMetadataConstraints">
