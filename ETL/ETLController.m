@@ -288,6 +288,7 @@
     [[NSFileManager defaultManager] removeItemAtPath:[[self getFileStorage] mainDirectoryPath] error:nil];
     
     // Delete data base records
+    [self deleteAllObjectsFromCoreData];
     
     // Enable buttons
     [[(AppDelegate *) [[NSApplication sharedApplication] delegate] downloadButton] setEnabled:YES];
@@ -300,6 +301,36 @@
     
     NSLog( @"ETL was restarted." );
 
+}
+
+//
+// Makes fetch request to the created SQLite database and displays 
+//
+- (NSArray *) makeFetchRequest
+{
+    // Create the fetch request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    // Entity whose contents we want to read
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.managedObjectContext];
+    
+    // We will sort the data by markets and by codes
+    NSSortDescriptor *marketSort = [[NSSortDescriptor alloc] initWithKey:@"market" ascending:YES];
+    NSSortDescriptor *codeSort = [[NSSortDescriptor alloc] initWithKey:@"code" ascending:YES];
+    
+    // Creating NSArray with sort descriptors
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:marketSort, codeSort, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Tellthe request that we want to read the contents of the Comapny entity
+    [fetchRequest setEntity:entity];
+    
+    NSError *requestError = nil;
+    
+    // Executes the fetch request on the context
+    NSArray *companies = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
+    
+    return companies;
 }
 
 //
@@ -328,6 +359,16 @@
     }
     
     return etlModel;
+}
+
+- (void) deleteAllObjectsFromCoreData
+{
+    NSArray *objects = [NSArray arrayWithArray:[self makeFetchRequest]];
+    
+    for (NSManagedObject *managedObject in objects)
+    {
+        [[self managedObjectContext] deleteObject:managedObject];
+    }
 }
 
 //

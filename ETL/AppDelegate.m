@@ -65,36 +65,19 @@
 - (IBAction)restartETLAction:(id)sender
 {
     [etl performSelectorInBackground:@selector(restart) withObject:nil];
+    
+    // Removes all objects from arrayController because we have deleted all objects from entity
+    [[self.databaseArrayController content] removeAllObjects];
 }
 
 //
-// Runs in new thread ETLController::restart
+// Run in new thread ETLController::makeFetchRequest
 //
 - (IBAction)showAction:(id)sender
 {
-    // Create the fetch request
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSArray *companies = [NSArray arrayWithArray:[etl makeFetchRequest]];
     
-    // Entity whose contents we want to read
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Company" inManagedObjectContext:self.managedObjectContext];
-    
-    // We will sort the data by markets and by codes
-    NSSortDescriptor *marketSort = [[NSSortDescriptor alloc] initWithKey:@"market" ascending:YES];
-    NSSortDescriptor *codeSort = [[NSSortDescriptor alloc] initWithKey:@"code" ascending:YES];
-    
-    // Creating NSArray with sort descriptors
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:marketSort, codeSort, nil];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-    
-    // Tellthe request that we want to read the contents of the Comapny entity
-    [fetchRequest setEntity:entity];
-    
-    NSError *requestError = nil;
-    
-    // Executes the fetch request on the context
-    NSArray *companies = [self.managedObjectContext executeFetchRequest:fetchRequest error:&requestError];
-    
-    // Removes all objects from arrayController to update it
+    // Removes all objects from arrayController before updting it to prevent from doubling inside NSTableView
     [[self.databaseArrayController content] removeAllObjects];
     
     // Checks if we get an array of companies

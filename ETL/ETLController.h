@@ -30,16 +30,17 @@ typedef enum {
     ETLState currentState;
 }
 
--(id) init;
--(void) downloadWebsitesSource;
--(void) extractCompaniesData;
--(void) saveExtractedData;
--(void) fullCycle;
--(void) restart;
+- (id) init;
+- (void) downloadWebsitesSource;
+- (void) extractCompaniesData;
+- (void) saveExtractedData;
+- (void) fullCycle;
+- (void) restart;
+- (NSArray *) makeFetchRequest;
 
--(FileStorage *) getFileStorage;
--(ETLModel *) getETLModel;
-
+- (FileStorage *) getFileStorage;
+- (ETLModel *) getETLModel;
+- (void) deleteAllObjectsFromCoreData;
 - (NSManagedObjectContext *)managedObjectContext;
 
 @end
