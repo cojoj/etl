@@ -20,13 +20,17 @@
 
 @synthesize websiteSource;
 
-//Designated initializer 
+//
+// WebsiteDownloader constructor
+//
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding
 {
     if (self = [super init])
     {
+        // Set URL of website to be downladed
         [self setWebsiteURL:url];
         
+        // Set encoding of website content
         if (!encoding)
         {
             [self setWebsiteEncoding:NSUTF8StringEncoding];
@@ -35,18 +39,26 @@
         {
             [self setWebsiteEncoding:encoding];
         }
-
+        
+        // Download website source
         [self setWebsiteSource:[self downloadContentOfWebsite]];
     }
     return self;
 }
 
+# pragma private
+
+//
+// Download content of website
+//
 - (NSString *)downloadContentOfWebsite
 {
     NSError *error = nil;
+    // Try to download website source
     NSString *tmpWebsite = [NSString stringWithContentsOfURL:self.websiteURL encoding:NSUTF8StringEncoding error:&error];
     
-    if (!tmpWebsite)
+    // If failed, show alert
+    if ( !tmpWebsite )
     {
         NSAlert *downloadAlert = [NSAlert alertWithMessageText:[NSString stringWithFormat:@"Strona o adresie: %@, nie istnieje", self.websiteURL]
                                                  defaultButton:@"OK"
@@ -56,6 +68,7 @@
         [downloadAlert runModal];
         return nil;
     }
+    // Else return webstie content
     else
     {
         return tmpWebsite;

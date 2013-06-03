@@ -14,10 +14,14 @@
 @synthesize extracedDataContainer;
 @synthesize companiesCount;
 
+//
+// ETLModle constructor 
+//
 - (id) init
 {
     if ( self = [super init] )
     {
+        // Init containers for websites source and extracted comapnies data 
         self.downloadedWebsitesContainer = [NSMutableDictionary dictionaryWithCapacity: 0];
         self.extracedDataContainer = [NSMutableDictionary dictionaryWithCapacity: 0];
     }
@@ -25,6 +29,9 @@
     return self;
 }
 
+//
+// Return range of letters to be covered by ETL
+//
 + (NSArray *) getArrayOfLetter
 {
     return @[
@@ -34,6 +41,9 @@
             ];
 }
 
+//
+// Return names of markets to be covered by ETL
+//
 + (NSArray *) getArrayOfMarkets
 {
     return @[
