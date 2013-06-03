@@ -10,6 +10,9 @@
 
 @interface FileStorage : NSObject
 
+/**
+ * A NSString property with main directory where all application data will be stored
+ */
 @property (strong, nonatomic) NSString *mainDirectoryPath;
 
 /**
