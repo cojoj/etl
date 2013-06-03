@@ -10,8 +10,14 @@
 
 @interface WebsiteDownloader : NSObject
 
+/**
+ * Keep source of downloaded website 
+ */
 @property (strong, nonatomic) NSString *websiteSource;
 
+/**
+ * WebsiteDownloader constructor
+ */
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding;
 
 @end

@@ -10,12 +10,30 @@
 
 @interface ETLModel : NSObject
 
+/**
+ * Container for downloaded websites source
+ */
 @property (strong, nonatomic)NSMutableDictionary *downloadedWebsitesContainer;
+
+/**
+ * Container for extracted data source
+ */
 @property (strong, nonatomic)NSMutableDictionary *extracedDataContainer;
 @property (assign)NSInteger companiesCount;
 
+/**
+ * ETLModle constructor. Inits containers for data.
+ */
 - (id) init;
+
+/**
+ * Return range of letters to be covered by ETL
+ */
 + (NSArray *) getArrayOfLetter;
+
+/**
+ * Return names of markets to be covered by ETL
+ */
 + (NSArray *) getArrayOfMarkets;
 
 @end

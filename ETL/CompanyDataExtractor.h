@@ -14,7 +14,15 @@
     NSRegularExpression *regexQuotes;
 }
 
+/**
+ * CompanyDataExtractor constructor
+ * Init regular expresions to be used during data extraction
+ */
 -(id) init;
+
+/**
+ * Extract companies data from website source 
+ */
 -(NSArray *) extractDataFromWebsiteContent:(NSString *) websiteContent;
 
 @end

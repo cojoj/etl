@@ -14,9 +14,6 @@
 @synthesize extracedDataContainer;
 @synthesize companiesCount;
 
-//
-// ETLModle constructor 
-//
 - (id) init
 {
     if ( self = [super init] )
@@ -29,9 +26,6 @@
     return self;
 }
 
-//
-// Return range of letters to be covered by ETL
-//
 + (NSArray *) getArrayOfLetter
 {
     return @[
@@ -41,9 +35,6 @@
             ];
 }
 
-//
-// Return names of markets to be covered by ETL
-//
 + (NSArray *) getArrayOfMarkets
 {
     return @[

@@ -20,9 +20,6 @@
 
 @synthesize websiteSource;
 
-//
-// WebsiteDownloader constructor
-//
 - (id)initWithURL:(NSURL *)url encoding:(NSStringEncoding)encoding
 {
     if (self = [super init])
@@ -48,9 +45,9 @@
 
 # pragma private
 
-//
-// Download content of website
-//
+/**
+ * Download content of website
+ */
 - (NSString *)downloadContentOfWebsite
 {
     NSError *error = nil;

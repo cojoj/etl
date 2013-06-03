@@ -10,10 +10,6 @@
 
 @implementation CompanyDataExtractor
 
-//
-// CompanyDataExtractor constructor
-// Init regular expresions to be used during data extraction
-//
 -(id) init
 {
     if ( self = [super init] )
@@ -29,10 +25,6 @@
     return self;
 }
 
-//
-// CompanyDataExtractor constructor
-// Init regular expresions to be used during data extraction
-//
 -(NSArray *) extractDataFromWebsiteContent:(NSString *) websiteContent
 {
     // Init container for extracted data
