@@ -12,9 +12,6 @@
 
 @implementation ETLController
 
-//
-// ETLController constructor
-//
 - (id) init
 {
     if (self = [super init])
@@ -25,10 +22,6 @@
     return self;
 }
 
-//
-// Download from http://findata.co.nz websites source
-// with quotes and save it to both .txt file and ETL model container
-//
 -(void) downloadWebsitesSource
 {
     // Allow websites download only if ETL has done nothing so far
@@ -101,9 +94,7 @@
     currentState = (ETLState) websitesDownloaded;
     
 }
-//
-// Extract company data ( company name, symbol, quotes, company market value ) from previously downloaded web sources 
-//
+
 -(void) extractCompaniesData
 {
     // Allow data extraction only after ETL has downloaded websites
@@ -185,9 +176,6 @@
     NSLog( @"Action extractCompaniesData complete." );
 }
 
-//
-// Save extraced data of companies to persistent store
-//
 -(void) saveExtractedData
 {
     // Allow data to be saved only after ETL has extraced companies data from websites source
@@ -262,9 +250,6 @@
      NSLog( @"Action saveParsedData complete." );
 }
 
-//
-// Run full cycle of ETL program
-//
 -(void) fullCycle
 {
     [self downloadWebsitesSource];
@@ -272,9 +257,6 @@
     [self saveExtractedData];
 }
 
-//
-// Run full cycle of ETL program
-//
 -(void) restart
 {
     // Clear pointers to instance veriables
@@ -303,9 +285,6 @@
 
 }
 
-//
-// Makes fetch request to the created SQLite database and displays 
-//
 - (NSArray *) makeFetchRequest
 {
     // Create the fetch request
@@ -333,9 +312,6 @@
     return companies;
 }
 
-//
-// Getter for FileStorage instance
-//
 -(FileStorage *) getFileStorage
 {
     // If no file storge init it
@@ -347,9 +323,6 @@
     return storage;
 }
 
-//
-// Getter for ETLModel instance
-//
 -(ETLModel *) getETLModel
 {
     // If no file storge init it
@@ -377,9 +350,6 @@
     }
 }
 
-//
-// Getter for managedObjectContext
-//
 - (NSManagedObjectContext *)managedObjectContext
 {
     NSManagedObjectContext *context = nil;

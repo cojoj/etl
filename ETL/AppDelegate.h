@@ -32,15 +32,54 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+/**
+ * Run in new thread ETLController::downloadWebsitesSource
+ */
 - (IBAction)downloadAction:(id)sender;
+
+/**
+ * Run in new thread ETLController::extractCompaniesData
+ */
 - (IBAction)extractAction:(id)sender;
+
+/**
+ * Run in new thread ETLController::saveExtractedData
+ */
 - (IBAction)saveAction:(id)sender;
+
+/**
+ * Run in new thread ETLController::fullCycle
+ */
 - (IBAction)fullCycleAction:(id)sender;
+
+/**
+ * Shows data in table returend from ETLController::makeFetchRequest
+ */
 - (IBAction)showAction:(id)sender;
+
+/**
+ * Run in new thread ETLController::restart
+ */
 - (IBAction)restartETLAction:(id)sender;
 
+/**
+ * Show panel with progress bar
+ */
 - (void) showProgressBarPanelWithTitle:(NSString *) title;
+
+/**
+ * Upade progress bar level
+ */
 - (void) updateProgressBarPanelWithProgressLevel:(double) level;
+
+/**
+ * Hide panel with progress bar
+ */
 - (void) hideProgressBarPanel;
+
+/**
+ * Returns the URL to the application's Documents directory.
+ */
+- (NSURL *)applicationDocumentsDirectory;
 
 @end
