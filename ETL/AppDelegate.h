@@ -26,6 +26,7 @@
 @property (assign) IBOutlet NSButton *saveButton;
 @property (assign) IBOutlet NSButton *fullCycleButton;
 @property (weak) IBOutlet NSArrayController *databaseArrayController;
+@property (weak) IBOutlet NSTableView *coreDataTableView;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

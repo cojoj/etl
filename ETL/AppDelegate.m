@@ -68,6 +68,9 @@
     
     // Removes all objects from arrayController because we have deleted all objects from entity
     [[self.databaseArrayController content] removeAllObjects];
+    
+    // Reloads TableView to remove all old entries from display
+    [self.coreDataTableView reloadData];
 }
 
 //

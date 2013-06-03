@@ -369,6 +369,12 @@
     {
         [[self managedObjectContext] deleteObject:managedObject];
     }
+    
+    NSError *error = nil;
+    
+    if (![[self managedObjectContext] save:&error]) {
+        NSLog(@"Error in savind CoreData after deletion");
+    }
 }
 
 //
