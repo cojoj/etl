@@ -136,7 +136,7 @@
         if ( ! [[NSFileManager defaultManager] fileExistsAtPath:fullPath] )
         {
             // Extract company data from the stored website content
-            data = [extractor extractDataFromWebsiteContent:[[[self getETLModel] downloadedWebsitesContainer] objectForKey:key]];
+            data = [[extractor extractDataFromWebsiteContent:[[[self getETLModel] downloadedWebsitesContainer] objectForKey:key]] mutableCopy];
             // Create string with each company data in new line
             dataAsString = [data componentsJoinedByString:@""]; // Note that last line of string is empty
             // Saving data to .csv file
@@ -158,7 +158,7 @@
             // Load content of CSV file
             dataAsString = [[self getFileStorage] loadContentOfFile:fullPath];
             // Split string by line
-            data = [dataAsString componentsSeparatedByString:@"\r"];
+            data = [[dataAsString componentsSeparatedByString:@"\r"] mutableCopy];
             // Remove last line ( which is empty )
             [data removeLastObject];
         }
