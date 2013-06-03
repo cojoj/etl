@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * Class which is responsible for creating directories for application files and
+ * for saving data to files.
+ */
 @interface FileStorage : NSObject
 
 /**

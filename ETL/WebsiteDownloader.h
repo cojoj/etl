@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ * This class is responsible for downlodaing a specified data from URL
+ */
 @interface WebsiteDownloader : NSObject
 
 /**

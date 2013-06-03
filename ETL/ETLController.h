@@ -27,7 +27,7 @@ typedef enum {
 } ETLState;
 
 /**
- * Main program controller. Holds whole ETL logic.
+ * Main application controller. Holds the whole ETL logic.
  */
 @interface ETLController : NSObject
 {
