@@ -2,4 +2,4 @@
 ETL.xcodeproj/xcuserdata/mckomo.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist
 ETL.xcodeproj/project.xcworkspace/xcuserdata/mckomo.xcuserdatad/UserInterfaceState.xcuserstate
 doxygen.conf
-docs/
+docs/*
